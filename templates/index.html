@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GestureBeats - Rhythm Game with Gesture Controls</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Debug Console - Initially hidden -->
+    <div id="debug-console" class="debug-console hidden">
+        <div class="debug-header">
+            <h3>Debug Console</h3>
+            <button id="toggle-debug" class="debug-toggle">Hide</button>
+            <button id="clear-debug" class="debug-clear">Clear</button>
+        </div>
+        <div id="debug-log" class="debug-log"></div>
+    </div>
+    
+    <!-- Debug Toggle Button - Always visible -->
+    <button id="debug-toggle-btn" class="debug-toggle-btn">Debug</button>
+    
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay hidden">
+        <div class="loading-spinner"></div>
+        <div id="loading-text" class="loading-text">Loading...</div>
+        <div id="loading-progress-container" style="width: 80%; margin: 10px auto 0; display: none;">
+            <div id="loading-progress-bar" style="height: 12px; background: #222; border-radius: 6px; overflow: hidden;">
+                <div id="loading-progress-fill" style="height: 100%; width: 0%; background: #1dd1a1; transition: width 0.3s;"></div>
+            </div>
+            <div id="loading-progress-percent" style="text-align: center; color: white; margin-top: 4px; font-size: 1rem;">0%</div>
+        </div>
+    </div>
+    
+    <!-- Countdown Overlay -->
+    <div id="countdown-overlay" class="countdown-overlay hidden">
+        <div id="countdown-number" class="countdown-number">3</div>
+    </div>
+
+    <!-- Dynamic Background -->
+    <div id="dynamic-background"></div>
+
+    <!-- Splash Screen -->
+    <div id="splash-screen">
+        <div class="logo-container">
+            <h1 class="game-title">GestureBeats</h1>
+            <p class="tagline">Play with your hands, feel the rhythm</p>
+        </div>
+        <div class="menu-container">
+            <button id="single-player-btn" class="menu-btn">Play Game</button>
+            <button id="tutorial-btn" class="menu-btn">How to Play</button>
+            <button id="diagnostic-btn" class="menu-btn diagnostic-btn">Run Diagnostics</button>
+        </div>
+    </div>
+
+    <!-- Replace the tutorial-screen div content -->
+    <div id="tutorial-screen" class="hidden">
+        <h2>How to Play</h2>
+        <div class="tutorial-content">
+            <div class="tutorial-section">
+                <h3>Match Your Gestures to the Falling Tiles!</h3>
+                <p>Make the correct hand gesture when the colored tiles reach the hit zone at the bottom of each lane.</p>
+            </div>
+            
+            <div class="tutorial-section">
+                <h3>Available Gestures</h3>
+                <div class="gesture-guide">
+                    <div class="gesture-item" data-gesture="fist">
+                        <div class="gesture-icon-large fist"></div>
+                        <div class="gesture-name">Fist</div>
+                        <div class="gesture-desc">Make a tight fist with your hand. Used for green tiles in Lane 1.</div>
+                    </div>
+                    <div class="gesture-item" data-gesture="peace">
+                        <div class="gesture-icon-large peace"></div>
+                        <div class="gesture-name">Peace Sign</div>
+                        <div class="gesture-desc">Raise index and middle fingers in a V shape. Used for red tiles in Lane 2.</div>
+                    </div>
+                    <div class="gesture-item" data-gesture="index">
+                        <div class="gesture-icon-large index"></div>
+                        <div class="gesture-name">Index Finger</div>
+                        <div class="gesture-desc">Point your index finger upward. Used for yellow tiles in Lane 3.</div>
+                    </div>
+                    <div class="gesture-item" data-gesture="open_hand">
+                        <div class="gesture-icon-large open_hand"></div>
+                        <div class="gesture-name">Open Hand</div>
+                        <div class="gesture-desc">Extend all fingers upward. Used for blue tiles in Lane 4.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tutorial-section">
+                <h3>Scoring</h3>
+                <p>Perfect timing: 100 points + combo bonus<br>
+                Great timing: 75 points + combo bonus<br>
+                Good timing: 50 points + combo bonus<br>
+                Build combos to multiply your score!</p>
+            </div>
+        </div>
+        <button id="back-to-menu" class="menu-btn back-btn">Back to Menu</button>
+    </div>
+
+    <!-- Leaderboard Screen -->
+    <div id="leaderboard-screen" class="hidden">
+        <h2>Leaderboard</h2>
+        <div id="leaderboard-list">
+            <p class="loading">Loading leaderboard...</p>
+        </div>
+        <button id="back-from-leaderboard" class="menu-btn back-btn">Back to Menu</button>
+    </div>
+
+    <!-- Song Select Screen -->
+    <div id="song-select-screen" class="hidden">
+        <h2>Select a Song</h2>
+        <div class="song-search-container">
+            <input type="text" id="song-search-input" class="search-input" placeholder="Search for a song...">
+            <button id="song-search-btn" class="menu-btn search-btn">Search</button>
+        </div>
+        <div id="song-list" class="song-list">
+            <p class="placeholder-text">Search for a song to begin</p>
+        </div>
+        <div id="selected-song-info" class="song-info hidden">
+            <h3 id="selected-song-title">Song Title</h3>
+            <div class="song-details">
+                <p>BPM: <span id="song-bpm">120</span></p>
+                <p>Length: <span id="song-duration">3:30</span></p>
+                <p>Difficulty: <span id="song-difficulty">Medium</span></p>
+            </div>
+            <button id="show-song-settings" class="menu-btn settings-btn">Game Settings</button>
+            <div id="song-settings-panel" class="song-settings-panel">
+                <div class="option-group">
+                    <label for="song-difficulty-select">Difficulty:</label>
+                    <select id="song-difficulty-select" class="game-option-select">
+                        <option value="easy">Easy (30-40 tiles/min)</option>
+                        <option value="medium" selected>Medium (60-80 tiles/min)</option>
+                        <option value="hard">Hard (100-120 tiles/min)</option>
+                        <option value="expert">Expert (150+ tiles/min)</option>
+                    </select>
+                </div>
+                <div class="option-group">
+                    <label for="song-time-limit">Time Limit:</label>
+                    <select id="song-time-limit" class="game-option-select">
+                        <option value="0">No Limit</option>
+                        <option value="30">30 Seconds</option>
+                        <option value="60" selected>1 Minute</option>
+                        <option value="120">2 Minutes</option>
+                        <option value="180">3 Minutes</option>
+                    </select>
+                </div>
+                <div class="option-group">
+                    <label for="song-game-speed">Game Speed:</label>
+                    <select id="song-game-speed" class="game-option-select">
+                        <option value="0.75">Slow (0.75x)</option>
+                        <option value="1" selected>Normal (1x)</option>
+                        <option value="1.25">Fast (1.25x)</option>
+                        <option value="1.5">Expert (1.5x)</option>
+                    </select>
+                </div>
+                <div class="option-group">
+                    <p>Volume Controls:</p>
+                    <div class="volume-controls">
+                        <div class="volume-slider-container">
+                            <label for="song-music-volume">Music: <span id="song-music-volume-value">50%</span></label>
+                            <input type="range" id="song-music-volume" class="volume-slider" min="0" max="100" value="50">
+                        </div>
+                        <div class="volume-slider-container">
+                            <label for="song-effects-volume">Effects: <span id="song-effects-volume-value">100%</span></label>
+                            <input type="range" id="song-effects-volume" class="volume-slider" min="0" max="100" value="100">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button id="start-game-btn" class="menu-btn">Start Game</button>
+        </div>
+        <button id="back-from-songs" class="menu-btn back-btn">Back to Menu</button>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="game-screen" class="hidden">
+        <div class="game-header-bar">
+            <div class="header-score">Score: <span id="score">0</span></div>
+            <div class="header-song"><span id="song-name">Song Name</span> <span id="speed-indicator"></span></div>
+            <div class="header-time">Time: <span id="time-value">0:00</span></div>
+        </div>
+        <div class="header-progress-bar">
+            <div id="header-progress-fill"></div>
+        </div>
+        <div class="game-area">
+            <div class="lanes">
+                <div class="lane" data-lane="0">
+                    <div class="falling-arrows" id="lane-arrows-0"></div>
+                    <div class="hit-zone"></div>
+                    <div class="lane-gesture-icon" id="lane-gesture-0"></div>
+                </div>
+                <div class="lane" data-lane="1">
+                    <div class="falling-arrows" id="lane-arrows-1"></div>
+                    <div class="hit-zone"></div>
+                    <div class="lane-gesture-icon" id="lane-gesture-1"></div>
+                </div>
+                <div class="lane" data-lane="2">
+                    <div class="falling-arrows" id="lane-arrows-2"></div>
+                    <div class="hit-zone"></div>
+                    <div class="lane-gesture-icon" id="lane-gesture-2"></div>
+                </div>
+                <div class="lane" data-lane="3">
+                    <div class="falling-arrows" id="lane-arrows-3"></div>
+                    <div class="hit-zone"></div>
+                    <div class="lane-gesture-icon" id="lane-gesture-3"></div>
+                </div>
+            </div>
+            <div class="right-panel">
+                <div class="webcam-frame">
+                    <img src="/video_feed?player=1" id="webcam1" class="webcam-feed">
+                </div>
+                <div class="gesture-display">
+                    <div class="gesture-icon-large none" id="gesture-icon-large"></div>
+                    <div class="gesture-label">Gesture:</div>
+                    <div class="gesture-name" id="gesture-name-large">None</div>
+                </div>
+                <div class="game-buttons">
+                    <button id="play-pause-btn" class="menu-btn pause-btn">Pause</button>
+                    <button id="stop-btn" class="menu-btn stop-btn">Stop</button>
+                    <button id="exit-game" class="menu-btn exit-btn">Exit Game</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Screen -->
+    <div id="results-screen" class="hidden">
+        <h2>Game Results</h2>
+        <div class="results-container">
+            <div id="player1-results" class="player-results">
+                <h3>Player 1</h3>
+                <p>Score: <span id="player1-final-score">0</span></p>
+                <p>Max Combo: <span id="player1-max-combo">0</span></p>
+                <p>Accuracy: <span id="player1-accuracy">0%</span></p>
+                <p>Rank: <span id="player1-rank">F</span></p>
+            </div>
+        </div>
+        <div id="winner-display">
+            <h3 id="winner-text">Great Job!</h3>
+        </div>
+        <div class="results-buttons">
+            <button id="play-again" class="menu-btn">Play Again</button>
+            <button id="back-to-main" class="menu-btn">Back to Menu</button>
+        </div>
+    </div>
+
+    <!-- Audio Elements -->
+    <audio id="song-audio" preload="auto"></audio>
+    <audio id="hit-sound" src="static/sounds/hit.mp3" preload="auto"></audio>
+    <audio id="miss-sound" src="static/sounds/miss.mp3" preload="auto"></audio>
+    <audio id="combo-sound" src="static/sounds/combo.mp3" preload="auto"></audio>
+    
+    <!-- Scripts -->
+    <script src="https://cdn.socket.io/4.7.4/socket.io.min.js"></script>
+    <script src="static/js/game.js"></script>
+</body>
+</html>

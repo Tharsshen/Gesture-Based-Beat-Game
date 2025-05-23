@@ -1,0 +1,2036 @@
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Press Start 2P', cursive;
+}
+
+body, html {
+  background: #0d1b2a;
+  color: #e0e6ed;
+  font-family: 'Segoe UI', 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden; /* Prevent body scrolling */
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Dynamic Background */
+#dynamic-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(26,26,46,1) 0%, rgba(15,52,96,1) 100%);
+  z-index: 1;
+  animation: pulse 4s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.5); }
+}
+
+/* Splash Screen */
+#splash-screen {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.logo-container {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.game-title {
+  font-size: 5rem;
+  background: linear-gradient(90deg, #ff6b6b, #feca57, #1dd1a1, #48dbfb, #ff9ff3);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient 10s ease infinite;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+.tagline {
+  font-size: 1.5rem;
+  color: #a6c1ee;
+  opacity: 0.8;
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.menu-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 300px;
+}
+
+.menu-btn {
+  width: 100%;
+  padding: 15px 0;
+  border: none;
+  border-radius: 50px;
+  background: linear-gradient(90deg, #ff6b6b, #feca57);
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+}
+
+.menu-btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
+}
+
+.menu-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(255, 107, 107, 0.4);
+}
+
+/* Tutorial Screen */
+#tutorial-screen {
+  width: 100%;
+  height: 100vh; /* Full viewport height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center content vertically */
+  align-items: center;
+  padding: 10px 20px; /* Keep padding */
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.85);
+  position: fixed; /* Ensure it covers the entire screen */
+  top: 0;
+  left: 0;
+  overflow-y: auto; /* Allow scrolling if needed, but aim to avoid it */
+}
+
+#tutorial-screen h2 {
+  font-size: 2rem; /* Adjusted heading size */
+  color: #ffd700;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+  margin-bottom: 10px; /* Keep margin */
+  text-align: center;
+}
+
+.tutorial-content {
+  width: 95%;
+  max-width: 900px; /* Keep max-width */
+  background: rgba(13, 42, 64, 0.8);
+  border-radius: 15px;
+  padding: 15px; /* Keep padding */
+  border: 2px solid #4b6cb7;
+  box-shadow: 0 0 20px rgba(75, 108, 183, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: auto; /* Allow content to dictate height */
+  max-height: 85vh; /* Keep max-height */
+  margin-bottom: 10px;
+  overflow-y: auto; /* Allow scrolling within content if necessary */
+}
+
+.tutorial-section {
+  margin-bottom: 15px; /* Keep margin */
+  width: 100%;
+}
+
+.tutorial-section:last-child {
+  margin-bottom: 0;
+}
+
+.tutorial-section h3 {
+  font-size: 1rem; /* Reduced font size */
+  color: #48dbfb;
+  margin-bottom: 5px; /* Keep margin */
+  text-align: center;
+  text-shadow: 0 0 8px rgba(72, 219, 251, 0.5);
+}
+
+.tutorial-section p {
+  color: #e0e6ed;
+  font-size: 0.85rem; /* Reduced font size */
+  line-height: 1.3;
+  text-align: center;
+  margin-bottom: 8px; /* Keep margin */
+}
+
+.gesture-guide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap; /* Allow wrapping */
+  gap: 8px; /* Further reduced gap */
+  margin: 10px 0; /* Keep margin */
+  padding: 5px; /* Keep padding */
+  background: none;
+  border: none;
+  box-shadow: none;
+}
+
+.gesture-item {
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  padding: 6px; /* Further reduced padding */
+  width: 120px; /* Further reduced width */
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.3s ease;
+  border: 2px solid rgba(75, 108, 183, 0.7);
+  box-shadow: 0 0 10px rgba(29, 209, 161, 0.2);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.gesture-item:hover {
+  transform: translateY(-3px); /* Adjusted hover effect */
+  box-shadow: 0 5px 15px rgba(29, 209, 161, 0.4); /* Adjusted shadow */
+  border-color: rgba(29, 209, 161, 0.8);
+}
+
+.gesture-icon-large {
+  width: 40px; /* Reduced size */
+  height: 40px; /* Reduced size */
+  margin-bottom: 3px; /* Reduced margin */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: transform 0.3s ease;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gesture-item:hover .gesture-icon-large {
+  transform: scale(1.1);
+}
+
+.gesture-name {
+  font-size: 0.8rem; /* Reduced font size */
+  font-weight: bold;
+  color: white;
+  margin: 1px 0; /* Further reduced margin */
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  text-transform: uppercase;
+}
+
+.gesture-desc {
+  color: #a6c1ee;
+  font-size: 0.65rem; /* Slightly smaller description font */
+  text-align: center;
+  line-height: 1.2; /* Further reduced line height */
+  padding: 0 3px; /* Reduced padding */
+  opacity: 0.9;
+}
+
+/* Add colored backgrounds to gesture icons */
+.gesture-item[data-gesture="fist"] .gesture-icon-large {
+  background-color: #1dd1a1; /* Green */
+  border: 2px solid #3be8b0;
+}
+
+.gesture-item[data-gesture="peace"] .gesture-icon-large {
+  background-color: #ff6b6b; /* Red */
+  border: 2px solid #ff8e8e;
+}
+
+.gesture-item[data-gesture="index"] .gesture-icon-large {
+  background-color: #feca57; /* Yellow */
+  border: 2px solid #ffde80;
+}
+
+.gesture-item[data-gesture="open_hand"] .gesture-icon-large {
+  background-color: #48dbfb; /* Blue */
+  border: 2px solid #70eaff;
+}
+
+/* Ensure the SVG icons are visible on the colored background */
+.gesture-icon-large svg {
+  fill: white;
+  stroke: white;
+  width: 60%;
+  height: 60%;
+}
+
+/* Gesture-specific styles */
+.gesture-item[data-gesture="fist"] {
+  border-color: #1dd1a1;
+}
+
+.gesture-item[data-gesture="peace"] {
+  border-color: #ff6b6b;
+}
+
+.gesture-item[data-gesture="index"] {
+  border-color: #feca57;
+}
+
+.gesture-item[data-gesture="open_hand"] {
+  border-color: #48dbfb;
+}
+
+/* Scoring Section */
+.tutorial-section.scoring-section p {
+  font-size: 0.85rem; /* Further smaller font to save space */
+  line-height: 1.3; /* Reduced line height */
+  margin: 3px 0; /* Further reduced margin */
+}
+
+/* Back to Menu Button */
+.back-btn {
+  width: 180px; /* Reduced button width */
+  padding: 8px 0; /* Reduced padding */
+  border: none;
+  border-radius: 50px;
+  background: linear-gradient(90deg, #ff6b6b, #feca57);
+  color: white;
+  font-size: 0.9rem; /* Reduced font size */
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+  margin-top: 10px; /* Further reduced margin */
+}
+
+.back-btn:hover {
+  transform: translateY(-4px); /* Adjusted hover effect */
+  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6); /* Adjusted shadow */
+}
+
+.back-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(255, 107, 107, 0.4);
+}
+
+/* Debug Toggle Button */
+.debug-toggle-btn {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  background: rgba(0, 20, 0, 0.8);
+  color: #00ff00;
+  border: 1px solid #00ff00;
+  border-radius: 4px;
+  padding: 5px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  z-index: 9998;
+  font-family: monospace;
+  box-shadow: 0 0 5px rgba(0, 255, 0, 0.3);
+}
+
+.debug-toggle-btn:hover {
+  background: rgba(0, 50, 0, 0.8);
+  box-shadow: 0 0 8px rgba(0, 255, 0, 0.5);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  #tutorial-screen h2 {
+    font-size: 1.8rem; /* Smaller heading on mobile */
+  }
+
+  .tutorial-content {
+    width: 95%;
+    padding: 8px; /* Reduced padding */
+  }
+
+  .tutorial-section {
+    margin-bottom: 10px; /* Reduced margin */
+  }
+
+  .tutorial-section h3 {
+    font-size: 1rem; /* Smaller heading */
+  }
+
+  .tutorial-section p {
+    font-size: 0.8rem; /* Smaller font */
+    margin-bottom: 5px;
+  }
+
+  .gesture-guide {
+    gap: 8px; /* Reduced gap */
+  }
+
+  .gesture-item {
+    width: 120px; /* Smaller boxes on mobile */
+    padding: 6px; /* Reduced padding */
+  }
+
+  .gesture-icon-large {
+    width: 35px; /* Smaller icon */
+    height: 35px;
+    margin-bottom: 3px;
+  }
+
+  .gesture-name {
+    font-size: 0.7rem; /* Smaller font */
+  }
+
+  .gesture-desc {
+    font-size: 0.55rem; /* Smaller description font */
+  }
+
+  .tutorial-section.scoring-section p {
+    font-size: 0.75rem; /* Smaller font */
+    margin: 2px 0;
+  }
+
+  .back-btn {
+    width: 160px; /* Smaller button */
+    padding: 6px 0;
+    font-size: 0.8rem;
+    margin-top: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  #tutorial-screen h2 {
+    font-size: 1.5rem; /* Even smaller heading */
+  }
+
+  .tutorial-content {
+    padding: 5px;
+  }
+
+  .tutorial-section {
+    margin-bottom: 8px;
+  }
+
+  .tutorial-section h3 {
+    font-size: 0.9rem;
+  }
+
+  .tutorial-section p {
+    font-size: 0.75rem;
+    margin-bottom: 3px;
+  }
+
+  .gesture-guide {
+    gap: 5px;
+    margin: 5px 0;
+    padding: 3px;
+  }
+
+  .gesture-item {
+    width: 100px; /* Even smaller for very small screens */
+    padding: 5px;
+  }
+
+  .gesture-icon-large {
+    width: 30px;
+    height: 30px;
+    margin-bottom: 2px;
+  }
+
+  .gesture-name {
+    font-size: 0.65rem;
+  }
+
+  .gesture-desc {
+    font-size: 0.5rem;
+  }
+
+  .tutorial-section.scoring-section p {
+    font-size: 0.7rem;
+    margin: 1px 0;
+  }
+
+  .back-btn {
+    width: 140px;
+    padding: 5px 0;
+    font-size: 0.75rem;
+    margin-top: 5px;
+  }
+}
+
+/* Leaderboard Screen */
+#leaderboard-screen {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+#leaderboard-screen h2 {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  color: #feca57;
+}
+
+#leaderboard-list {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 20px;
+  max-width: 600px;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+/* Song Select Screen */
+#song-select-screen {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: radial-gradient(circle, rgba(26,26,46,1) 0%, rgba(15,52,96,1) 100%);
+}
+
+#song-select-screen h2 {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  color: #feca57;
+  text-shadow: 0 0 10px rgba(254, 202, 87, 0.5);
+}
+
+.song-search-container {
+  display: flex;
+  width: 80%;
+  max-width: 800px;
+  margin-bottom: 20px;
+}
+
+.search-input {
+  flex: 1;
+  padding: 15px;
+  border: 3px solid #4b6cb7;
+  border-radius: 25px 0 0 25px;
+  font-size: 16px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  outline: none;
+}
+
+.search-btn {
+  border-radius: 0 25px 25px 0;
+  margin: 0;
+  width: 120px;
+}
+
+.song-list {
+  width: 80%;
+  max-width: 800px;
+  max-height: 40vh;
+  overflow-y: auto;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 2px solid #4b6cb7;
+}
+
+.song-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 15px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  background: rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.song-item:hover {
+  background: rgba(75, 108, 183, 0.3);
+  transform: translateY(-2px);
+}
+
+.song-item.selected {
+  background: linear-gradient(90deg, #4b6cb7, #182848);
+  border: 2px solid #feca57;
+  color: #feca57;
+}
+
+.song-title {
+  font-size: 18px;
+  color: white;
+  font-weight: bold;
+}
+
+.song-info {
+  width: 80%;
+  max-width: 800px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  border: 2px solid #4b6cb7;
+}
+
+.song-info h3 {
+  color: #feca57;
+  margin-bottom: 15px;
+  font-size: 1.8rem;
+  text-shadow: 0 0 5px rgba(254, 202, 87, 0.5);
+}
+
+.song-details {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.song-details p {
+  font-size: 1.1rem;
+  color: #a6c1ee;
+}
+
+#start-game-btn {
+  width: 60%;
+  margin: 10px auto;
+  display: block;
+  background: linear-gradient(90deg, #1dd1a1, #48dbfb);
+}
+
+#start-game-btn:hover {
+  background: linear-gradient(90deg, #48dbfb, #1dd1a1);
+}
+
+.placeholder-text {
+  color: #a6c1ee;
+  text-align: center;
+  font-size: 1.2rem;
+  padding: 20px;
+}
+
+/* Game Screen */
+#game-screen {
+  width: 100vw;
+  height: 100vh;
+  background: #0d1b2a;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  z-index: 2;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* --- Header Bar --- */
+.game-header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #112240;
+  color: #e0e6ed;
+  font-size: 1.2rem;
+  padding: 0.7rem 2.5rem 0.3rem 2.5rem;
+  font-weight: 600;
+  border-bottom: 1px solid #1dd1a1;
+}
+.header-score { color: #48c6ef; }
+.header-song { color: #fff; text-align: center; flex: 1; }
+.header-time { color: #48c6ef; text-align: right; }
+
+.header-progress-bar {
+  width: 100%;
+  height: 5px;
+  background: #1a2636;
+  position: relative;
+}
+#header-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #1dd1a1 0%, #48c6ef 50%, #7d88e6 100%);
+  border-radius: 3px;
+  transition: width 0.3s;
+  box-shadow: 0 0 8px rgba(29, 209, 161, 0.7);
+  background-size: 200% 100%;
+  animation: progress-gradient 2s linear infinite;
+}
+
+@keyframes progress-gradient {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+/* --- Game Area Layout --- */
+.game-area {
+  display: flex;
+  height: calc(100vh - 100px);
+}
+
+.lanes {
+  display: flex;
+  flex: 3;
+  height: 100%;
+}
+
+.lane {
+  flex: 1;
+  position: relative;
+  height: 100%;
+  min-height: 400px;
+  border-right: 1px solid rgba(30, 144, 255, 0.3);
+  background-color: rgba(0, 20, 40, 0.6);
+  overflow: hidden;
+}
+
+.lane:last-child {
+  border-right: none;
+}
+
+/* Arrow styling - Make tiles bigger */
+.arrow {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  background-color: transparent;
+  transform: translateX(-50%);
+  left: 50%;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fall 4s linear forwards;
+  animation-fill-mode: forwards;
+  font-size: 30px;
+  z-index: 10;
+}
+
+.arrow-up {
+  background-color: #1dd1a1;
+  color: white;
+}
+
+.arrow-down {
+  background-color: #ff6b6b;
+  color: white;
+}
+
+/* Custom arrow icons with SVG instead of emoji */
+.arrow-up::before {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 40px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M7 14l5-5 5 5z'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  transform: rotate(180deg) scale(1.5);
+}
+
+.arrow-down::before {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 40px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  transform: scale(1.5);
+}
+
+/* Add falling animation */
+@keyframes fall {
+  from {
+    top: -80px;
+  }
+  to {
+    top: calc(100% - 80px);
+  }
+}
+
+/* Hit zone indicator - make it more prominent */
+.hit-zone {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background-color: rgba(30, 144, 255, 0.15);
+  border-top: 2px solid rgba(30, 144, 255, 0.7);
+  z-index: 1;
+}
+
+/* Lane gesture icons - styled to match the reference image */
+.lane-gesture-icon {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  background-color: rgba(13, 42, 64, 0.9);
+  border: 2px solid rgba(30, 144, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 18px;
+  z-index: 20;
+}
+
+/* Custom gesture icons instead of emoji */
+.lane-gesture-icon::before {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 50px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.lane[data-lane="0"] .lane-gesture-icon::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 100 100'%3E%3Cpath d='M40,50 L40,80 C40,85 60,85 60,80 L60,30 C60,25 40,25 40,30 L40,40' fill='white' stroke='white' stroke-width='3'/%3E%3Cpath d='M30,40 L30,65 C30,70 40,70 40,65 L30,40 C30,35 30,35 30,40 Z' fill='white' stroke='white' stroke-width='3'/%3E%3C/svg%3E");
+}
+
+.lane[data-lane="1"] .lane-gesture-icon::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 100 100'%3E%3Cpath d='M50,20 C45,20 45,30 45,35 L45,50 L35,50 C30,50 30,60 35,60 L45,60 L45,80 C45,85 55,85 55,80 L55,60 L65,60 C70,60 70,50 65,50 L55,50 L55,35 C55,30 55,20 50,20 Z' fill='white' stroke='white' stroke-width='3'/%3E%3C/svg%3E");
+}
+
+.lane[data-lane="2"] .lane-gesture-icon::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 100 100'%3E%3Cpath d='M50,20 C45,20 45,30 45,40 L45,80 C45,85 55,85 55,80 L55,40 C55,30 55,20 50,20 Z' fill='white' stroke='white' stroke-width='3'/%3E%3C/svg%3E");
+}
+
+.lane[data-lane="3"] .lane-gesture-icon::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 100 100'%3E%3Cpath d='M30,50 L30,70 C30,75 35,75 35,70 L35,45 C35,40 30,40 30,45 L30,50 Z M45,40 L45,70 C45,75 50,75 50,70 L50,35 C50,30 45,30 45,35 L45,40 Z M60,40 L60,70 C60,75 65,75 65,70 L65,35 C65,30 60,30 60,35 L60,40 Z M75,50 L75,70 C75,75 80,75 80,70 L80,45 C80,40 75,40 75,45 L75,50 Z' fill='white' stroke='white' stroke-width='3'/%3E%3C/svg%3E");
+}
+
+/* Right panel improvements */
+.right-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(13, 42, 64, 0.8);
+  padding: 15px;
+  border-left: 1px solid rgba(30, 144, 255, 0.5);
+  justify-content: space-between;
+}
+
+/* Adjust webcam frame to be taller */
+.webcam-frame {
+  width: 100%;
+  height: 320px;
+  background-color: #000;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  border: 2px solid #1e90ff;
+}
+
+.webcam-feed {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Move gesture display down and improve styling */
+.gesture-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: auto;
+  margin-bottom: 15px;
+  padding: 20px 15px;
+  background-color: rgba(0, 20, 40, 0.5);
+  border-radius: 10px;
+  border: 1px solid rgba(30, 144, 255, 0.5);
+}
+
+/* Style for gesture icon - use SVG instead of emoji */
+.gesture-icon-large {
+  width: 70px;
+  height: 70px;
+  margin-bottom: 10px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.gesture-icon-large.peace {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 100 100'%3E%3Cpath d='M50,20 C45,20 45,30 45,35 L45,50 L35,50 C30,50 30,60 35,60 L45,60 L45,80 C45,85 55,85 55,80 L55,60 L65,60 C70,60 70,50 65,50 L55,50 L55,35 C55,30 55,20 50,20 Z' fill='white' stroke='white' stroke-width='3'/%3E%3C/svg%3E");
+}
+
+.gesture-icon-large.index {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 100 100'%3E%3Cpath d='M50,20 C45,20 45,30 45,40 L45,80 C45,85 55,85 55,80 L55,40 C55,30 55,20 50,20 Z' fill='white' stroke='white' stroke-width='3'/%3E%3C/svg%3E");
+}
+
+.gesture-icon-large.fist {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='512' height='512' viewBox='0 0 512 512'%3E%3Ccircle cx='256' cy='256' r='240' fill='%231dd1a1'/%3E%3Cpath d='M156,186 C156,146 216,146 216,186 L216,316 C216,336 276,336 276,316 L276,166 C276,126 336,126 336,166 L336,316 C336,396 236,396 156,396 L156,186 Z' fill='white'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.gesture-icon-large.thumbs_up {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 100 100'%3E%3Cpath d='M40,50 L40,80 C40,85 60,85 60,80 L60,30 C60,25 40,25 40,30 L40,40' fill='white' stroke='white' stroke-width='3'/%3E%3Cpath d='M30,40 L30,65 C30,70 40,70 40,65 L30,40 C30,35 30,35 30,40 Z' fill='white' stroke='white' stroke-width='3'/%3E%3C/svg%3E");
+}
+
+.gesture-icon-large.open_hand {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 100 100'%3E%3Cpath d='M30,50 L30,70 C30,75 35,75 35,70 L35,45 C35,40 30,40 30,45 L30,50 Z M45,40 L45,70 C45,75 50,75 50,70 L50,35 C50,30 45,30 45,35 L45,40 Z M60,40 L60,70 C60,75 65,75 65,70 L65,35 C65,30 60,30 60,35 L60,40 Z M75,50 L75,70 C75,75 80,75 80,70 L80,45 C80,40 75,40 75,45 L75,50 Z' fill='white' stroke='white' stroke-width='3'/%3E%3C/svg%3E");
+}
+
+.gesture-icon-large.down, .gesture-icon-large.none {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='30' fill='none' stroke='white' stroke-width='3'/%3E%3Ctext x='50' y='65' text-anchor='middle' font-size='40' fill='white'%3E?%3C/text%3E%3C/svg%3E");
+}
+
+/* Ensure game buttons are at the bottom with proper spacing */
+.game-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.game-buttons button {
+  padding: 15px;
+  border-radius: 8px;
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+  width: 100%;
+}
+
+.pause-btn {
+  background-color: #fbc531;
+  color: #111;
+}
+
+.stop-btn {
+  background-color: #ff6b6b;
+  color: white;
+}
+
+.exit-btn {
+  background-color: #ff7675;
+  color: white;
+}
+
+/* Make the hit feedback more visible */
+.feedback-text {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 28px;
+  font-weight: bold;
+  z-index: 100;
+  text-shadow: 0 0 8px rgba(0,0,0,0.8);
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+
+.perfect {
+  color: #ffd32a;
+}
+
+.great {
+  color: #26de81;
+}
+
+.good {
+  color: #4bcffa;
+}
+
+.miss {
+  color: #ff6b6b;
+}
+
+.combo-feedback {
+  color: #ffdd59;
+  font-size: 20px;
+}
+
+/* --- Misc --- */
+#game-screen .hidden { display: none !important; }
+
+/* Responsive adjustments */
+@media (max-width: 1100px) {
+  .game-area { flex-direction: column; align-items: center; }
+  .lanes { margin-right: 0; margin-bottom: 2rem; }
+  .right-panel { width: 90vw; max-width: 340px; }
+}
+
+/* Results Screen */
+#results-screen {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+#results-screen h2 {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  color: #feca57;
+}
+
+.results-container {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  margin-bottom: 30px;
+}
+
+.player-results {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 20px;
+  min-width: 250px;
+}
+
+.player-results h3 {
+  color: #48dbfb;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+}
+
+.player-results p {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+#player1-final-score, #player2-final-score,
+#player1-max-combo, #player2-max-combo,
+#player1-accuracy, #player2-accuracy,
+#player1-rank, #player2-rank {
+  font-weight: bold;
+  color: #feca57;
+}
+
+#winner-display {
+  margin-top: 20px;
+}
+
+#winner-text {
+  font-size: 2rem;
+  background: linear-gradient(90deg, #ff6b6b, #feca57, #1dd1a1, #48dbfb);
+  background-size: 300% 300%;
+  animation: gradient 5s ease infinite;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.results-buttons {
+  display: flex;
+  gap: 20px;
+}
+
+/* Debug Console */
+.debug-console {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  color: #00ff00;
+  z-index: 9999;
+  padding: 10px;
+  font-family: monospace;
+  max-height: 300px;
+  display: none;
+  box-shadow: 0 -2px 10px rgba(0, 255, 0, 0.2);
+  border-top: 1px solid #00ff00;
+}
+
+.debug-console.visible {
+  display: block;
+}
+
+.debug-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #00ff00;
+}
+
+.debug-log {
+  height: 250px;
+  overflow-y: auto;
+  font-size: 12px;
+  line-height: 1.4;
+  padding: 5px;
+  background: rgba(0, 20, 0, 0.3);
+  border-radius: 3px;
+}
+
+.debug-toggle, .debug-clear {
+  background: rgba(0, 0, 0, 0.6);
+  color: #00ff00;
+  border: 1px solid #00ff00;
+  padding: 3px 8px;
+  font-size: 12px;
+  cursor: pointer;
+  font-family: monospace;
+  border-radius: 3px;
+}
+
+.debug-toggle:hover, .debug-clear:hover {
+  background: rgba(0, 50, 0, 0.6);
+}
+
+.debug-entry {
+  margin-bottom: 3px;
+  word-wrap: break-word;
+  border-bottom: 1px dotted rgba(0, 255, 0, 0.2);
+  padding-bottom: 2px;
+}
+
+.debug-time {
+  color: #aaffaa;
+  margin-right: 5px;
+  font-weight: bold;
+}
+
+.debug-info {
+  color: #88ccff;
+}
+
+.debug-error {
+  color: #ff6b6b;
+}
+
+/* Loading indicator */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  flex-direction: column;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #feca57;
+  animation: spin 1s ease-in-out infinite;
+  margin-bottom: 20px;
+}
+
+.loading-text {
+  font-size: 24px;
+  margin-top: 15px;
+  color: white;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Countdown overlay styles */
+.countdown-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1001;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.countdown-number {
+  font-size: 150px;
+  color: white;
+  font-weight: bold;
+  text-shadow: 0 0 20px rgba(29, 209, 161, 0.8);
+  animation: pulse 0.8s infinite alternate;
+}
+
+.countdown-number.start {
+  font-size: 120px;
+  color: #1dd1a1;
+}
+
+/* Game lane styles for arrows */
+.game-lane {
+  width: 100%;
+  max-width: 340px;
+  margin: 0 auto;
+  height: 480px;
+  position: relative;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 15px;
+  overflow: hidden;
+  border: 2px solid #1dd1a1;
+  box-shadow: 0 0 15px rgba(29, 209, 161, 0.3);
+}
+
+/* Tile styling */
+.tile {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+  transition: transform 0.1s;
+  animation-name: fallDown;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+  top: -60px;
+  left: 0;
+  opacity: 1;
+}
+
+/* Hit box styling [NEW] */
+.hit-box {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  bottom: 80px; /* Matches hitZoneTop in checkHit */
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  transition: all 0.2s;
+}
+
+.hit-box.active {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: #1dd1a1;
+}
+
+.hit-box.in-hit-zone {
+  box-shadow: 0 0 15px rgba(29, 209, 161, 0.8);
+  transform: scale(1.05);
+}
+
+.hit-box-icon {
+  width: 40px;
+  height: 40px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.hit-box.peace .hit-box-icon {
+  background-image: url('/static/images/peace.png');
+}
+
+.hit-box.index .hit-box-icon {
+  background-image: url('/static/images/index.png');
+}
+
+.hit-box.fist .hit-box-icon {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='512' height='512' viewBox='0 0 512 512'%3E%3Ccircle cx='256' cy='256' r='240' fill='%231dd1a1'/%3E%3Cpath d='M156,186 C156,146 216,146 216,186 L216,316 C216,336 276,336 276,316 L276,166 C276,126 336,126 336,166 L336,316 C336,396 236,396 156,396 L156,186 Z' fill='white'/%3E%3C/svg%3E");
+}
+
+.hit-box.thumbs_up .hit-box-icon {
+  background-image: url('/static/images/thumbs_up.png');
+}
+
+.hit-box.open_hand .hit-box-icon {
+  background-image: url('/static/images/open_hand.png');
+}
+
+/* Feedback text styling [MODIFIED] */
+.feedback-text {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) translateY(0);
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.9);
+  opacity: 1;
+  transition: opacity 0.5s, transform 0.5s;
+  pointer-events: none;
+}
+
+.feedback-text.perfect {
+  color: #ffdd59;
+  text-shadow: 0 0 10px #feca57, 0 0 20px #ff9f1a;
+  animation: perfect-pulse 0.5s ease-out;
+  font-size: 32px;
+}
+
+@keyframes perfect-pulse {
+  0% { transform: translateX(-50%) scale(0.8); }
+  50% { transform: translateX(-50%) scale(1.2); }
+  100% { transform: translateX(-50%) scale(1); }
+}
+
+.feedback-text.great {
+  color: #1dd1a1;
+}
+
+.feedback-text.good {
+  color: #48dbfb;
+}
+
+.feedback-text.miss {
+  color: #ff5555;
+}
+
+.feedback-text.combo-feedback {
+  color: #ffaa00;
+  font-size: 20px;
+  transform: scale(1.1);
+}
+
+.feedback-text[style*="opacity: 0"] {
+  transform: translateY(-20px);
+}
+
+/* Tile animations */
+@keyframes fallDown {
+  from { top: -60px; }
+  to { top: 480px; }
+}
+
+@keyframes tilePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* Expired tile effect */
+.tile.expired {
+  opacity: 0.3;
+  transform: scale(0.8);
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+/* Hit feedback */
+.hit-feedback {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  pointer-events: none;
+  z-index: 10;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+.hit-feedback.perfect {
+  color: #feca57;
+  animation: feedback-fade 0.5s ease-out forwards;
+  font-size: 1.6rem;
+}
+
+.hit-feedback.great {
+  color: #1dd1a1;
+  animation: feedback-fade 0.5s ease-out forwards;
+}
+
+.hit-feedback.good {
+  color: #48dbfb;
+  animation: feedback-fade 0.5s ease-out forwards;
+}
+
+.hit-feedback.miss {
+  color: #ff6b6b;
+  animation: feedback-fade 0.5s ease-out forwards;
+}
+
+@keyframes feedback-fade {
+  0% { opacity: 0; transform: translateX(-50%) translateY(0); }
+  20% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(-50%) translateY(-40px); }
+}
+
+/* Tile colors */
+.tile.peace {
+  background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+  border: 2px solid #ffffff;
+}
+
+.tile.index {
+  background: linear-gradient(45deg, #feca57, #ffde80);
+  border: 2px solid #ffffff;
+}
+
+.tile.fist {
+  background-color: #1dd1a1;
+  border-color: #3be8b0;
+}
+
+.tile.thumbs_up {
+  background: linear-gradient(45deg, #1dd1a1, #3be8b0);
+  border: 2px solid #ffffff;
+}
+
+.tile.open_hand {
+  background: linear-gradient(45deg, #48dbfb, #70eaff);
+  border: 2px solid #ffffff;
+}
+
+@keyframes glow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+/* Game options */
+.game-options {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  padding: 15px;
+  margin: 15px 0;
+  border: 1px solid rgba(75, 108, 183, 0.5);
+}
+
+.option-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.option-group label {
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+  color: #feca57;
+}
+
+.game-option-select {
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: 2px solid #4b6cb7;
+  border-radius: 5px;
+  padding: 8px 15px;
+  width: 200px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  outline: none;
+}
+
+.volume-controls {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 20px;
+}
+
+.volume-slider-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.volume-slider-container label {
+  margin-bottom: 5px;
+  font-size: 0.8rem;
+}
+
+.volume-slider {
+  width: 100%;
+  height: 6px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(255, 255, 255, 0.2);
+  outline: none;
+  border-radius: 5px;
+  margin: 10px 0;
+}
+
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #feca57;
+  cursor: pointer;
+}
+
+.volume-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #feca57;
+  cursor: pointer;
+  border: none;
+}
+
+/* Time display in game */
+.time-display {
+  display: flex;
+  align-items: center;
+  margin-left: 15px;
+}
+
+.time-bar {
+  width: 100px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  margin-left: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.time-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ff6b6b, #feca57);
+  width: 100%;
+  transition: width 1s linear;
+}
+
+/* Help button */
+.help-btn {
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: 1px solid #4b6cb7;
+  border-radius: 04px;
+  padding: 3px 8px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.help-btn:hover {
+  background: rgba(75, 108, 183, 0.5);
+}
+
+/* Gesture Guide Overlay */
+.gesture-guide-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.gesture-guide-content {
+  background: rgba(0, 0, 0, 0.9);
+  border: 2px solid #4b6cb7;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 80%;
+}
+
+.gesture-guide-content h3 {
+  color: #feca57;
+  margin-bottom: 15px;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.tile-icon {
+  width: 65px;
+  height: 65px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.tile.peace .tile-icon {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 100 100"><path d="M50,20 C45,20 45,30 45,35 L45,50 L35,50 C30,50 30,60 35,60 L45,60 L45,80 C45,85 55,85 55,80 L55,60 L65,60 C70,60 70,50 65,50 L55,50 L55,35 C55,30 55,20 50,20 Z" fill="white" stroke="white" stroke-width="3"/></svg>');
+}
+
+.tile.index .tile-icon {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 100 100"><path d="M50,20 C45,20 45,30 45,40 L45,80 C45,85 55,85 55,80 L55,40 C55,30 55,20 50,20 Z" fill="white" stroke="white" stroke-width="3"/></svg>');
+}
+
+.tile.fist .tile-icon {  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='512' height='512' viewBox='0 0 512 512'%3E%3Ccircle cx='256' cy='256' r='240' fill='%231dd1a1'/%3E%3Cpath d='M156,186 C156,146 216,146 216,186 L216,316 C216,336 276,336 276,316 L276,166 C276,126 336,126 336,166 L336,316 C336,396 236,396 156,396 L156,186 Z' fill='white'/%3E%3C/svg%3E");
+}
+
+.tile.thumbs_up .tile-icon {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 100 100"><path d="M40,50 L40,80 C40,85 60,85 60,80 L60,30 C60,25 40,25 40,30 L40,40" fill="white" stroke="white" stroke-width="3"/><path d="M30,40 L30,65 C30,70 40,70 40,65 L30,40 C30,35 30,35 30,40 Z" fill="white" stroke="white" stroke-width="3"/></svg>');
+}
+
+.tile.open_hand .tile-icon {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 100 100"><path d="M30,50 L30,70 C30,75 35,75 35,70 L35,45 C35,40 30,40 30,45 L30,50 Z M45,40 L45,70 C45,75 50,75 50,70 L50,35 C50,30 45,30 45,35 L45,40 Z M60,40 L60,70 C60,75 65,75 65,70 L65,35 C65,30 60,30 60,35 L60,40 Z M75,50 L75,70 C75,75 80,75 80,70 L80,45 C80,40 75,40 75,45 L75,50 Z" fill="white" stroke="white" stroke-width="3"/></svg>');
+}
+
+.feedback-text {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.gesture-indicator.flash {
+  animation: gesture-flash 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gesture-indicator.peace {
+  background-color: rgba(255, 107, 107, 0.8);
+  border: 2px solid #ff6b6b;
+}
+
+.gesture-indicator.index {
+  background-color: rgba(254, 202, 87, 0.8);
+  border: 2px solid #feca57;
+}
+
+.gesture-indicator.fist {  background-color: #1dd1a1;}
+
+.gesture-indicator.thumbs_up {
+  background-color: rgba(29, 209, 161, 0.8);
+  border: 2px solid #1dd1a1;
+}
+
+.gesture-indicator.open_hand {
+  background-color: rgba(72, 219, 251, 0.8);
+  border: 2px solid #48dbfb;
+}
+
+@keyframes gesture-flash {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+
+/* Song Settings Panel */
+.song-settings-panel {
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 15px 0;
+  border: 2px solid #4b6cb7;
+}
+
+.settings-btn {
+  margin-bottom: 10px;
+  background: linear-gradient(90deg, #4b6cb7, #182848);
+}
+
+.settings-btn:hover {
+  background: linear-gradient(90deg, #182848, #4b6cb7);
+}
+
+/* Volume Controls in Song Select */
+#song-select-screen .volume-slider {
+  background: rgba(255, 255, 255, 0.2);
+  height: 6px;
+  border-radius: 3px;
+}
+
+#song-select-screen .volume-slider::-webkit-slider-thumb {
+  background: #feca57;
+  width: 16px;
+  height: 16px;
+}
+
+#song-select-screen .volume-slider::-moz-range-thumb {
+  background: #feca57;
+  width: 16px;
+  height: 16px;
+}
+
+/* Difficulty info styling */
+.difficulty-info {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  padding: 10px 15px;
+  margin: 10px 0;
+  font-size: 0.8rem;
+}
+
+.difficulty-info h4 {
+  margin-bottom: 8px;
+  color: #feca57;
+}
+
+.difficulty-info ul {
+  padding-left: 15px;
+}
+
+.difficulty-info li {
+  margin-bottom: 5px;
+}
+
+.difficulty-label {
+  padding: 2px 5px;
+  border-radius: 3px;
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.difficulty-label.easy {
+  background-color: rgba(29, 209, 161, 0.5);
+  color: #1dd1a1;
+}
+
+.difficulty-label.medium {
+  background-color: rgba(254, 202, 87, 0.5);
+  color: #feca57;
+}
+
+.difficulty-label.hard {
+  background-color: rgba(255, 107, 107, 0.5);
+  color: #ff6b6b;
+}
+
+.difficulty-label.expert {
+  background-color: rgba(72, 52, 212, 0.5);
+  color: #48dbfb;
+}
+
+/* Hit zone active state when gesture matches */
+.hit-zone.active {
+  background-color: rgba(30, 144, 255, 0.4);
+  border-top: 2px solid rgba(30, 144, 255, 1);
+  box-shadow: 0 0 15px rgba(30, 144, 255, 0.6);
+}
+
+/* Fix emoji for open_hand */
+.open_hand::before {
+  content: '🖐️';
+}
+
+/* Add a background to the combo counter */
+#combo {
+  display: inline-block;
+  min-width: 30px;
+  text-align: center;
+}
+
+#combo-multiplier {
+  color: #ffd32a;
+  text-shadow: 0 0 5px rgba(255, 211, 42, 0.7);
+}
+
+/* Restore gesture text display styling */
+.gesture-name {
+  font-size: 32px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  width: 100%;
+  margin-top: 5px;
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.8), 0 0 12px rgba(0, 0, 0, 0.6);
+  padding: 6px 10px;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+}
+
+/* Color-coded backgrounds for gesture names */
+.gesture-name.peace {
+  background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 10px rgba(255, 107, 107, 0.6);
+}
+
+.gesture-name.index {
+  background: linear-gradient(45deg, #feca57, #ffde80);
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 10px rgba(254, 202, 87, 0.6);
+}
+
+.gesture-name.fist {
+  background-color: #1dd1a1;
+  border: 2px solid #3be8b0;
+  box-shadow: 0 0 10px rgba(29, 209, 161, 0.6);
+}
+
+.gesture-name.thumbs_up {
+  background: linear-gradient(45deg, #1dd1a1, #3be8b0);
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 10px rgba(29, 209, 161, 0.6);
+}
+
+.gesture-name.open_hand {
+  background: linear-gradient(45deg, #48dbfb, #70eaff);
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 10px rgba(72, 219, 251, 0.6);
+}
+
+.gesture-name.none {
+  background-color: rgba(50, 50, 50, 0.6);
+  border: 2px solid #333;
+  color: rgba(255, 255, 255, 0.7);
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+}
+
+.gesture-label {
+  font-size: 18px;
+  color: #1e90ff;
+  margin-bottom: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Color-code gesture icons in lanes */
+.lane[data-lane="0"] .lane-gesture-icon {
+  border-color: #1dd1a1;
+  box-shadow: 0 0 10px rgba(29, 209, 161, 0.5);
+  background-color: rgba(29, 209, 161, 0.2);
+}
+
+.lane[data-lane="1"] .lane-gesture-icon {
+  border-color: #ff6b6b;
+  box-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
+  background-color: rgba(255, 107, 107, 0.2);
+}
+
+.lane[data-lane="2"] .lane-gesture-icon {
+  border-color: #feca57;
+  box-shadow: 0 0 10px rgba(254, 202, 87, 0.5);
+  background-color: rgba(254, 202, 87, 0.2);
+}
+
+.lane[data-lane="3"] .lane-gesture-icon {
+  border-color: #48dbfb;
+  box-shadow: 0 0 10px rgba(72, 219, 251, 0.5);
+  background-color: rgba(72, 219, 251, 0.2);
+}
+
+/* Add combo flash effect */
+.combo-flash {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle, rgba(254, 202, 87, 0.3) 0%, rgba(0, 0, 0, 0) 70%);
+  z-index: 5;
+  pointer-events: none;
+  animation: flash-pulse 0.8s ease-out;
+}
+
+@keyframes flash-pulse {
+  0% { opacity: 0; }
+  40% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* Adjust falling animation for different difficulties */
+@keyframes fall {
+  from {
+    top: -80px;
+  }
+  to {
+    top: calc(100% - 80px);
+  }
+}
+
+/* Perfect hit effect */
+.feedback-text.perfect {
+  color: #ffdd59;
+  text-shadow: 0 0 10px #feca57, 0 0 20px #ff9f1a;
+  animation: perfect-pulse 0.5s ease-out;
+  font-size: 32px;
+}
+
+@keyframes perfect-pulse {
+  0% { transform: translateX(-50%) scale(0.8); }
+  50% { transform: translateX(-50%) scale(1.2); }
+  100% { transform: translateX(-50%) scale(1); }
+}
+
+/* Progress indicator in header */
+#header-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #1dd1a1 0%, #48c6ef 50%, #7d88e6 100%);
+  border-radius: 3px;
+  transition: width 0.3s;
+  box-shadow: 0 0 8px rgba(29, 209, 161, 0.7);
+  background-size: 200% 100%;
+  animation: progress-gradient 2s linear infinite;
+}
+
+@keyframes progress-gradient {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+/* Add styles for the gesture guide in How to Play */
+.gesture-guide {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin: 30px 0;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  border: 2px solid rgba(75, 108, 183, 0.3);
+}
+
+.gesture-item {
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 15px;
+  padding: 25px;
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid rgba(75, 108, 183, 0.7);
+  box-shadow: 0 0 20px rgba(29, 209, 161, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.gesture-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #1dd1a1, #48dbfb);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.gesture-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(29, 209, 161, 0.4);
+  border-color: rgba(29, 209, 161, 0.8);
+}
+
+.gesture-item:hover::before {
+  opacity: 1;
+}
+
+.gesture-icon {
+  width: 100px;
+  height: 100px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-bottom: 15px;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+  transition: transform 0.3s ease;
+}
+
+.gesture-item:hover .gesture-icon {
+  transform: scale(1.1);
+}
+
+.gesture-name {
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  margin: 10px 0;
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.gesture-desc {
+  color: #a6c1ee;
+  font-size: 14px;
+  text-align: center;
+  line-height: 1.6;
+  padding: 0 10px;
+  opacity: 0.9;
+}
+
+/* Lane indicator for each gesture */
+.gesture-item::after {
+  content: attr(data-lane);
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(29, 209, 161, 0.2);
+  color: #1dd1a1;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* Color-coded borders for each gesture type */
+.gesture-item[data-gesture="peace"] {
+  border-color: rgba(255, 107, 107, 0.7);
+}
+
+.gesture-item[data-gesture="index"] {
+  border-color: rgba(254, 202, 87, 0.7);
+}
+
+.gesture-item[data-gesture="fist"] {
+  border-color: rgba(29, 209, 161, 0.7);
+}
+
+.gesture-item[data-gesture="open_hand"] {
+  border-color: rgba(72, 219, 251, 0.7);
+}
+
+/* Hover effects for each gesture type */
+.gesture-item[data-gesture="peace"]:hover {
+  box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+}
+
+.gesture-item[data-gesture="index"]:hover {
+  box-shadow: 0 8px 25px rgba(254, 202, 87, 0.4);
+}
+
+.gesture-item[data-gesture="fist"]:hover {
+  box-shadow: 0 8px 25px rgba(29, 209, 161, 0.4);
+}
+
+.gesture-item[data-gesture="open_hand"]:hover {
+  box-shadow: 0 8px 25px rgba(72, 219, 251, 0.4);
+}
