@@ -1,4 +1,4 @@
-# Gesture-Based Beat Game 🎮
+# Gesture-Based Beat Game (GestureBeats) 🎮
 
 A rhythm-based game that uses hand gestures to play along with music. Control the game using different hand gestures captured through your webcam!
 
