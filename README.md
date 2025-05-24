@@ -21,10 +21,12 @@ This game combines rhythm gameplay with hand gesture recognition. Players need t
 
 ### How to Play
 ![How to Play](images/how-to-play.png)
+![How to Play](images/how-to-play2.png)
 *Tutorial screen showing game instructions*
 
 ### Song Selection
 ![Song Search](images/song-search.png)
+![Song Search](images/song-search2.png)
 *Search and select your favorite songs*
 
 ### Game Settings
