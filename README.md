@@ -57,6 +57,10 @@ The game recognizes four main gestures:
 ![Open Hand](images/gesture-open-hand.png)
 *Show your open hand to match the open hand gesture*
 
+### End-Screen
+![End-Screen](images/end-screen.png)
+*The game’s end screen showing the final score, accuracy, combo, and rank*
+
 ## 🛠️ Setup Instructions
 
 ### Prerequisites
