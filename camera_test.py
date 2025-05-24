@@ -7,7 +7,7 @@ for i in range(5):
     cap = cv2.VideoCapture(i)
     if cap.isOpened():
         print(f'Camera {i} is available. Showing preview...')
-        for _ in range(100):  # Show for ~3 seconds or until you press 'q'
+        for _ in range(100): 
             ret, frame = cap.read()
             if not ret:
                 break
