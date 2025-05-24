@@ -1,12 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Setup debug console
     const debugConsole = document.getElementById('debug-console');
     const debugLogContainer = document.getElementById('debug-log');
     const debugToggleBtn = document.getElementById('debug-toggle-btn');
     const toggleDebugBtn = document.getElementById('toggle-debug');
     const clearDebugBtn = document.getElementById('clear-debug');
     
-    // Function to log debug messages
     function logDebugMessage(message, level = 'info') {
         if (!debugLogContainer) return;
         
@@ -18,13 +16,11 @@ document.addEventListener('DOMContentLoaded', () => {
         debugLogContainer.appendChild(logEntry);
         debugLogContainer.scrollTop = debugLogContainer.scrollHeight;
         
-        // Limit log entries
         while (debugLogContainer.children.length > 100) {
             debugLogContainer.removeChild(debugLogContainer.firstChild);
         }
     }
     
-    // Toggle debug console visibility
     if (debugToggleBtn) {
         debugToggleBtn.addEventListener('click', () => {
             if (debugConsole) {
@@ -35,7 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // Toggle debug console between visible and hidden
     if (toggleDebugBtn) {
         toggleDebugBtn.addEventListener('click', () => {
             if (debugConsole) {
@@ -52,7 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // Clear debug log
     if (clearDebugBtn) {
         clearDebugBtn.addEventListener('click', () => {
             if (debugLogContainer) {
@@ -62,10 +56,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // Log initial startup message
     logDebugMessage("Debug console initialized", "info");
 
-    // Game state
     let gameState = {
         mode: null,
         song: null,
@@ -89,31 +81,31 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         difficultySettings: {
             easy: {
-                tilesPerMinute: 20,      // Very slow - one tile at a time
-                maxActiveTiles: 1,       // Only one tile active at any time
-                fallingSpeed: 5.0,       // Very slow falling
-                minSpacing: 3000,        // 3 seconds between tiles
+                tilesPerMinute: 20,      
+                maxActiveTiles: 1,       
+                fallingSpeed: 5.0,       
+                minSpacing: 3000,        
                 description: 'Super slow pace for beginners'
             },
             medium: {
-                tilesPerMinute: 40,      // Moderate pace - comfortable for most people
-                maxActiveTiles: 2,       // At most 2 tiles on screen (spaced far apart)
-                fallingSpeed: 3.0,       // Medium falling speed
-                minSpacing: 1500,        // 1.5 seconds between tiles
+                tilesPerMinute: 40,      
+                maxActiveTiles: 2,       
+                fallingSpeed: 3.0,       
+                minSpacing: 1500,       
                 description: 'Balanced pace for casual players'
             },
             hard: {
-                tilesPerMinute: 80,      // Fast pace - challenging
-                maxActiveTiles: 3,       // More tiles on screen
-                fallingSpeed: 2.0,       // Fast falling
-                minSpacing: 750,         // 0.75 seconds between tiles
+                tilesPerMinute: 80,      
+                maxActiveTiles: 3,       
+                fallingSpeed: 2.0,       
+                minSpacing: 750,         
                 description: 'Fast-paced challenge for experienced players'
             },
             expert: {
-                tilesPerMinute: 120,     // Very fast - expert level
-                maxActiveTiles: 4,       // Maximum challenge
-                fallingSpeed: 1.5,       // Very fast falling
-                minSpacing: 500,         // 0.5 seconds between tiles
+                tilesPerMinute: 120,     
+                maxActiveTiles: 4,       
+                fallingSpeed: 1.5,       
+                minSpacing: 500,         
                 description: 'Intense rhythm challenge for experts'
             }
         }
@@ -135,7 +127,6 @@ document.addEventListener('DOMContentLoaded', () => {
         combo: document.getElementById('combo-sound')
     };
 
-    // Set up audio elements
     Object.entries(gameState.soundVolumes).forEach(([key, volume]) => {
         if (audio[key]) {
             audio[key].volume = volume;
@@ -154,7 +145,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Helper function for playing sounds with error handling
     function playSound(soundName) {
         if (audio[soundName]) {
             audio[soundName].play().catch(e => {
@@ -163,7 +153,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Initialize game options
     const timeLimit = document.getElementById('time-limit');
     const gameSpeed = document.getElementById('game-speed');
     const difficultySelect = document.getElementById('difficulty-select');
@@ -172,7 +161,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const musicVolumeValue = document.getElementById('music-volume-value');
     const effectsVolumeValue = document.getElementById('effects-volume-value');
     
-    // Song settings
     const songTimeLimit = document.getElementById('song-time-limit');
     const songGameSpeed = document.getElementById('song-game-speed');
     const songDifficultySelect = document.getElementById('song-difficulty-select');
@@ -181,7 +169,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const songMusicVolumeValue = document.getElementById('song-music-volume-value');
     const songEffectsVolumeValue = document.getElementById('song-effects-volume-value');
 
-    // Sync settings with tutorial screen
     const tutorialDifficulty = document.getElementById('difficulty-select');
     const tutorialTimeLimit = document.getElementById('time-limit');
     const tutorialGameSpeed = document.getElementById('game-speed');
@@ -210,7 +197,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Set up game option event listeners
     if (timeLimit) {
         timeLimit.addEventListener('change', () => {
             gameState.timeLimit = parseInt(timeLimit.value);
@@ -254,7 +240,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Sync tutorial settings back to song select
     if (tutorialDifficulty) {
         tutorialDifficulty.addEventListener('change', () => {
             if (difficultySelect) {
@@ -315,7 +300,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Toggle help overlay
     const toggleHelpBtn = document.getElementById('toggle-help');
     const gestureGuideOverlay = document.getElementById('gesture-guide-overlay');
     
@@ -335,16 +319,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Navigation
     document.getElementById('single-player-btn').addEventListener('click', () => {
         gameState.mode = 'single';
         showScreen(screens.songSelect);
         logDebugMessage("Single player mode selected");
     });
 
-    // Two player mode removed
 
-    // Ensure these event listeners are properly set up
     document.getElementById('tutorial-btn').addEventListener('click', () => {
         showScreen(screens.tutorial);
         syncSettings();
@@ -356,7 +337,6 @@ document.addEventListener('DOMContentLoaded', () => {
         logDebugMessage("Returned to main menu from tutorial");
     });
 
-    // Make sure the showScreen function is working
     function showScreen(screen) {
         Object.values(screens).forEach(s => s.classList.add('hidden'));
         screen.classList.remove('hidden');
@@ -386,7 +366,6 @@ document.addEventListener('DOMContentLoaded', () => {
         logDebugMessage("Returned to main menu from results");
     });
 
-    // Show/Hide Song Settings
     const showSongSettingsBtn = document.getElementById('show-song-settings');
     const songSettingsPanel = document.getElementById('song-settings-panel');
     
@@ -405,7 +384,6 @@ document.addEventListener('DOMContentLoaded', () => {
         logDebugMessage(`Screen switched to ${screen.id}`);
     }
 
-    // Helper for loading progress
     function setLoadingProgress(percent) {
         const progressContainer = document.getElementById('loading-progress-container');
         const progressFill = document.getElementById('loading-progress-fill');
@@ -575,7 +553,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Stop button
     const stopBtn = document.getElementById('stop-btn');
     if (stopBtn) {
         stopBtn.addEventListener('click', () => {
@@ -584,28 +561,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // Tile generation logic
     const gestureTypes = ['peace', 'index', 'fist', 'open_hand'];
     let lanePositions = [];
 
-    // Calculate lane positions as percentages for perfect symmetry
     function calculateLanePositions() {
-        lanePositions = [12.5, 37.5, 62.5, 87.5]; // 4 lanes, centered
+        lanePositions = [12.5, 37.5, 62.5, 87.5]; 
         logDebugMessage(`Calculated lane positions as percentages: ${lanePositions}`);
     }
 
-    // Initialize lane positions and handle resize
     function initializeGameLane() {
         calculateLanePositions();
         window.addEventListener('resize', calculateLanePositions);
         
-        // Initialize gesture icons in lanes
         initializeGestureIcons();
         
         logDebugMessage('Game lanes initialized with gesture icons and hit zones');
     }
 
-    // Add hit boxes to each lane [NEW]
     function setupHitBoxes(playerLane, player) {
         playerLane.querySelectorAll('.hit-box').forEach(box => box.remove());
         lanePositions.forEach((percent, laneIdx) => {
@@ -620,20 +592,17 @@ document.addEventListener('DOMContentLoaded', () => {
         logDebugMessage(`Hit boxes set up for ${player} with positions: ${lanePositions}`);
     }
 
-    // Update hit box icons based on closest tiles [NEW]
     function updateHitBoxIcons(player) {
         const playerLane = document.getElementById(`${player}-gameplay`);
         const hitBoxes = playerLane.querySelectorAll('.hit-box');
         const tiles = Array.from(playerLane.querySelectorAll('.tile'));
         const hitZoneTop = playerLane.clientHeight - 80;
 
-        // Reset all hit boxes
         hitBoxes.forEach(hitBox => {
             hitBox.classList.remove('active', ...gestureTypes);
             hitBox.querySelector('.hit-box-icon').className = 'hit-box-icon';
         });
 
-        // Find closest tile for each lane
         const closestTiles = Array(lanePositions.length).fill(null);
         tiles.forEach(tile => {
             const tileRect = tile.getBoundingClientRect();
@@ -648,7 +617,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Update hit box icons
         closestTiles.forEach((closest, laneIdx) => {
             if (closest) {
                 const hitBox = hitBoxes[laneIdx];
@@ -673,7 +641,6 @@ document.addEventListener('DOMContentLoaded', () => {
         tile.dataset.gesture = gestureType;
         tile.dataset.spawnTime = spawnTime;
         tile.dataset.fallDuration = adjustedFallDuration;
-        // Set left as percentage for symmetry
         const laneIdx = Math.floor(Math.random() * lanePositions.length);
         tile.style.left = `${lanePositions[laneIdx]}%`;
         tile.style.transform = 'translateX(-50%)';
@@ -699,10 +666,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const intervalMs = (60 / tilesPerMinute) * 1000;
         const fallDuration = settings.fallingSpeed / gameState.speedMultiplier;
         
-        // Adjust minimum tiles based on time limit
         let minTiles;
         if (gameState.timeLimit === 30) {
-            minTiles = Math.min(25, tilesPerMinute * 0.5); // Half the normal rate for 30 seconds
+            minTiles = Math.min(25, tilesPerMinute * 0.5); 
         } else if (gameState.timeLimit === 60) {
             minTiles = Math.min(50, tilesPerMinute);
         } else {
@@ -711,12 +677,9 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const adjustedInterval = Math.min(intervalMs, (gameState.timeLimit * 1000) / minTiles);
         
-        // Track when the last tile was spawned for each lane
         const lastSpawnTimes = Array(4).fill(0);
-        // Track global last spawn time to enforce minimum spacing between any tiles
         let lastGlobalSpawnTime = 0;
         
-        // Get all arrow containers
         const arrowContainers = [];
         for (let i = 0; i < 4; i++) {
             const container = document.getElementById(`lane-arrows-${i}`);
@@ -732,37 +695,31 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const tileGenerationInterval = setInterval(() => {
             if (!gameState.isRunning) return;
-            const currentTime = Date.now(); // More accurate than audio.song.currentTime * 1000
+            const currentTime = Date.now(); 
             
-            // Enforce global minimum spacing between tiles (across all lanes)
             const minGlobalSpacing = settings.minSpacing / gameState.speedMultiplier;
             if (currentTime - lastGlobalSpawnTime < minGlobalSpacing) {
-                return; // Too soon to spawn another tile
+                return; 
             }
             
-            // Count total active tiles across all lanes
             let totalActiveTiles = 0;
             arrowContainers.forEach(({container}) => {
                 totalActiveTiles += container.querySelectorAll('.arrow').length || 0;
             });
             
-            // Don't spawn more tiles if we're already at the maximum
             if (totalActiveTiles >= settings.maxActiveTiles) {
                 return;
             }
             
-            // Choose a random lane that doesn't have too many active tiles
             const availableLanes = arrowContainers
                 .filter(({container}) => {
                     const activeTiles = container.querySelectorAll('.arrow').length || 0;
-                    // For easy difficulty, only allow one tile per lane
                     if (gameState.difficulty === 'easy') {
                         return activeTiles === 0;
                     }
-                    return activeTiles < 1; // At most 1 tile per lane at any time
+                    return activeTiles < 1; 
                 })
                 .filter(({laneIdx}) => {
-                    // Ensure minimum spacing between tiles in the same lane
                     const laneMinSpacing = settings.minSpacing / gameState.speedMultiplier;
                     return currentTime - lastSpawnTimes[laneIdx] >= laneMinSpacing;
                 });
@@ -770,11 +727,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (availableLanes.length > 0) {
                 const {laneIdx} = availableLanes[Math.floor(Math.random() * availableLanes.length)];
                 
-                // Determine which gesture this lane corresponds to
                 const laneGesture = GESTURE_LANE_MAP[laneIdx];
                 
-                // For variety, sometimes spawn up arrows (thumbs_up) and sometimes down arrows (down)
-                // But make sure they match the lane gesture when in that lane
                 let direction = 'up';
                 let requiredGesture = laneGesture;
                 
@@ -786,7 +740,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     requiredGesture = laneGesture;
                 }
                 
-                // Spawn arrow in the lane
                 spawnArrow(laneIdx, direction);
                 lastSpawnTimes[laneIdx] = currentTime;
                 lastGlobalSpawnTime = currentTime;
@@ -794,17 +747,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 logDebugMessage(`Arrow spawned in lane ${laneIdx} (direction: ${direction}, gesture: ${requiredGesture})`);
             }
             
-            // Update the gesture display in the right panel based on server data
             if (currentGesture) {
                 setRightPanelGesture(currentGesture);
             }
             
-            // Check if time limit has been reached
             if (gameState.timeLimit > 0 && gameState.timeRemaining <= 0) {
                 clearInterval(tileGenerationInterval);
-                setTimeout(endGame, 1000); // Give a 1-second grace period for final tiles
+                setTimeout(endGame, 1000); 
             }
-        }, adjustedInterval / 2); // Run the check more frequently than the adjusted interval
+        }, adjustedInterval / 2); 
     }
     
     function setupGestureDetection() {
@@ -818,13 +769,10 @@ document.addEventListener('DOMContentLoaded', () => {
             try {
                 const gesture = data.gesture.toLowerCase();
                 
-                // Store current gesture
                 currentGesture = gesture;
                 
-                // Update the gesture display
                 setRightPanelGesture(gesture);
                 
-                // Check for hits with arrows
                 checkHits(gesture);
             } catch (error) {
                 logDebugMessage(`Socket.IO message error: ${error.message}`, "error");
@@ -852,16 +800,13 @@ document.addEventListener('DOMContentLoaded', () => {
     function checkHits(gesture) {
         if (!gameState.isRunning) return;
         
-        // For each lane, check if there's an arrow in the hit zone
         for (let laneIdx = 0; laneIdx < 4; laneIdx++) {
             const arrowsContainer = document.getElementById(`lane-arrows-${laneIdx}`);
             if (!arrowsContainer) continue;
             
-            // Get all arrows in this lane
             const arrows = Array.from(arrowsContainer.querySelectorAll('.arrow'));
             if (!arrows.length) continue;
             
-            // Get the lane element to measure hit zone position
             const lane = document.querySelector(`.lane[data-lane="${laneIdx}"]`);
             if (!lane) continue;
             
@@ -871,11 +816,9 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (!hitZoneRect) continue;
             
-            // Define the hit zone area (where arrows should be hit)
             const hitZoneTop = hitZoneRect.top - laneRect.top;
             const hitZoneBottom = hitZoneRect.bottom - laneRect.top;
             
-            // Find arrows in the hit zone
             const arrowsInHitZone = arrows.filter(arrow => {
                 const arrowRect = arrow.getBoundingClientRect();
                 const arrowCenter = arrowRect.top + (arrowRect.height / 2) - laneRect.top;
@@ -884,7 +827,6 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (!arrowsInHitZone.length) continue;
             
-            // Get the closest arrow to the center of the hit zone
             const hitZoneCenter = (hitZoneTop + hitZoneBottom) / 2;
             arrowsInHitZone.sort((a, b) => {
                 const aRect = a.getBoundingClientRect();
@@ -898,23 +840,19 @@ document.addEventListener('DOMContentLoaded', () => {
             const closestArrowRect = closestArrow.getBoundingClientRect();
             const closestArrowCenter = closestArrowRect.top + (closestArrowRect.height / 2) - laneRect.top;
             
-            // Calculate accuracy based on distance from center
             const distanceFromCenter = Math.abs(closestArrowCenter - hitZoneCenter);
             const maxDistance = (hitZoneBottom - hitZoneTop) / 2;
             const accuracy = 1 - (distanceFromCenter / maxDistance);
             
-            // Check if gesture matches the required gesture for this lane
             const laneGesture = GESTURE_LANE_MAP[laneIdx];
             const arrowGesture = closestArrow.dataset.gesture;
             
-            // Determine if this is a hit
             const gestureMatches = (gesture === laneGesture) || (gesture === arrowGesture);
             
             if (gestureMatches) {
                 let score = 0;
                 let feedback = 'miss';
                 
-                // Score based on accuracy
                 if (accuracy > 0.9) {
                     score = 100;
                     feedback = 'perfect';
@@ -927,13 +865,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 
                 if (score > 0) {
-                    // Remove the arrow
                     closestArrow.remove();
                     
-                    // Update score
                     updateScore('player1', score, feedback, laneIdx);
                     
-                    // Only process one hit at a time
                     return;
                 }
             }
@@ -944,17 +879,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const playerState = gameState[player];
         let comboMultiplier = Math.floor(playerState.combo / 10) + 1;
         
-        // Cap the maximum combo multiplier at 5x to prevent unreasonable scores
         comboMultiplier = Math.min(comboMultiplier, 5);
         
         if (score > 0) {
-            // Add a small bonus for consecutive perfect hits
             let streakBonus = 0;
             if (feedback === 'perfect') {
                 playerState.perfectStreak = (playerState.perfectStreak || 0) + 1;
                 if (playerState.perfectStreak >= 3) {
-                    streakBonus = 25 * (playerState.perfectStreak - 2); // Bonus increases with streak
-                    streakBonus = Math.min(streakBonus, 100); // Cap at 100 points
+                    streakBonus = 25 * (playerState.perfectStreak - 2); 
+                    streakBonus = Math.min(streakBonus, 100); 
                 }
             } else {
                 playerState.perfectStreak = 0;
@@ -969,12 +902,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 playerState.maxCombo = playerState.combo;
             }
             
-            // Play different sounds based on hit quality
             if (playerState.combo % 10 === 0 && playerState.combo >= 10) {
                 playSound('combo');
             } else if (feedback === 'perfect') {
                 playSound('hit');
-                // Add a little pitch variation to make it more satisfying
                 if (audio.hit) {
                     audio.hit.playbackRate = 1.05;
                 }
@@ -985,7 +916,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
             
-            // Show streak bonus in feedback if applicable
             if (streakBonus > 0) {
                 feedback += ` +${streakBonus}`;
             }
@@ -995,7 +925,6 @@ document.addEventListener('DOMContentLoaded', () => {
             playSound('miss');
         }
         
-        // Update UI
         const scoreDisplay = document.getElementById('score');
         const comboDisplay = document.getElementById('combo');
         const comboMultiplierDisplay = document.getElementById('combo-multiplier');
@@ -1012,16 +941,14 @@ document.addEventListener('DOMContentLoaded', () => {
             comboMultiplierDisplay.textContent = playerState.combo > 0 ? `x${comboMultiplier}` : '';
         }
         
-        // Display feedback in the correct lane
         if (laneIdx >= 0) {
             const lane = document.querySelector(`.lane[data-lane="${laneIdx}"]`);
             if (lane) {
                 const feedbackText = document.createElement('div');
-                feedbackText.className = `feedback-text ${feedback.split(' ')[0].toLowerCase()}`; // Use first word for class
+                feedbackText.className = `feedback-text ${feedback.split(' ')[0].toLowerCase()}`; 
                 feedbackText.textContent = feedback.toUpperCase();
                 lane.appendChild(feedbackText);
                 
-                // Animate and remove
                 setTimeout(() => {
                     feedbackText.style.opacity = '0';
                     setTimeout(() => {
@@ -1029,11 +956,10 @@ document.addEventListener('DOMContentLoaded', () => {
                             feedbackText.remove();
                         }
                     }, 500);
-                }, 700); // Show feedback longer
+                }, 700); 
             }
         }
         
-        // Display combo feedback
         if (score > 0 && playerState.combo % 10 === 0 && playerState.combo >= 10) {
             const lane = document.querySelector(`.lane[data-lane="${laneIdx}"]`);
             if (lane) {
@@ -1043,12 +969,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 comboFeedback.style.top = '30%';
                 lane.appendChild(comboFeedback);
                 
-                // Add a special effect for combos
                 const comboFlash = document.createElement('div');
                 comboFlash.className = 'combo-flash';
                 lane.appendChild(comboFlash);
                 
-                // Animate and remove
                 setTimeout(() => {
                     comboFeedback.style.opacity = '0';
                     comboFlash.style.opacity = '0';
@@ -1087,7 +1011,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         try {
-            // Restart webcam to ensure it's working properly
             await restartWebcam();
             
             showScreen(screens.game);
@@ -1163,10 +1086,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 setLoadingProgress(60);
                 
-                // Get the real duration of the song
                 const realDuration = audio.song.duration;
                 if (realDuration && isFinite(realDuration)) {
-                    // If time limit is 0 or longer than the song, use the song duration
                     if (gameState.timeLimit === 0 || gameState.timeLimit > realDuration) {
                         gameState.timeLimit = Math.ceil(realDuration);
                         gameState.timeRemaining = gameState.timeLimit;
@@ -1178,16 +1099,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 logDebugMessage(`Audio loading error: ${error.message}. Continuing without song audio.`, "warning");
             }
             
-            // Hide loading overlay
             setTimeout(() => {
                 hideLoadingProgress();
                 if (loadingOverlay) loadingOverlay.classList.add('hidden');
                 
-                // Start countdown before starting the game
                 startCountdown().then(() => {
                     gameState.isRunning = true;
                     
-                    // Start playing the audio
                     if (audio.song) {
                         audio.song.play().catch(e => {
                             logDebugMessage(`Error playing song: ${e.message}`, "error");
@@ -1204,7 +1122,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         gameState.timeRemaining--;
                         updateTimeDisplay();
                         
-                        // Update progress bar
                         const progress = (gameState.timeRemaining / gameState.timeLimit) * 100;
                         setHeaderProgress(progress);
                         
@@ -1231,7 +1148,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-    // Function to show countdown before game starts
     function startCountdown() {
         return new Promise(resolve => {
             const countdownOverlay = document.getElementById('countdown-overlay');
@@ -1274,7 +1190,6 @@ document.addEventListener('DOMContentLoaded', () => {
             timeDisplay.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
         }
         
-        // Update progress bar
         const progress = gameState.timeLimit > 0 ? 
             (gameState.timeRemaining / gameState.timeLimit) * 100 : 
             (audio.song && audio.song.duration ? (audio.song.currentTime / audio.song.duration) * 100 : 0);
@@ -1289,7 +1204,6 @@ document.addEventListener('DOMContentLoaded', () => {
             audio.song.currentTime = 0;
         }
         
-        // Clear all arrows from lanes
         const arrows = document.querySelectorAll('.arrow');
         if (arrows) {
             arrows.forEach(arrow => arrow.remove());
@@ -1366,13 +1280,11 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('time-value').textContent = '0:00';
         document.getElementById('header-progress-fill').style.width = '0%';
         
-        // Restart the webcam to ensure it's properly reset
         restartWebcam();
         
         logDebugMessage("Game state reset");
     }
     
-    // Function to restart the webcam
     async function restartWebcam() {
         try {
             logDebugMessage("Restarting webcam...");
@@ -1396,10 +1308,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const result = await response.json();
             logDebugMessage(`Webcam restart ${result.success ? 'successful' : 'failed'}: ${result.message || result.error}`);
             
-            // Also refresh the webcam feed by updating the src
             const webcamFeed = document.getElementById('webcam1');
             if (webcamFeed) {
-                // Add a timestamp to force refresh
                 const timestamp = new Date().getTime();
                 webcamFeed.src = `/video_feed?player=1&t=${timestamp}`;
             }
@@ -1415,7 +1325,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-    // Leaderboard functionality removed
     
     document.getElementById('diagnostic-btn').addEventListener('click', async () => {
         const loadingOverlay = document.getElementById('loading-overlay');
@@ -1452,7 +1361,6 @@ document.addEventListener('DOMContentLoaded', () => {
     syncSettings();
     logDebugMessage("Game initialized");
 
-    // --- Arrow and Gesture Icon Maps ---
     const ARROW_ICONS = {
         up: '⬆️',
         down: '⬇️'
@@ -1462,7 +1370,7 @@ document.addEventListener('DOMContentLoaded', () => {
         index: '☝️',
         fist: '👊',
         open_hand: '🤟',
-        down: '👎', // fallback for 'down' gesture
+        down: '👎', 
         none: '❓'
     };
     const GESTURE_NAMES = {
@@ -1474,15 +1382,13 @@ document.addEventListener('DOMContentLoaded', () => {
         none: 'None'
     };
 
-    // Map gestures to lanes
     const GESTURE_LANE_MAP = [
-        'fist',       // Lane 0
-        'peace',      // Lane 1
-        'index',      // Lane 2
-        'open_hand'   // Lane 3
+        'fist',       
+        'peace',      
+        'index',      
+        'open_hand'   
     ];
 
-    // --- Render Falling Arrows ---
     function spawnArrow(laneIdx, direction) {
         const arrowsContainer = document.getElementById(`lane-arrows-${laneIdx}`);
         if (!arrowsContainer) return;
@@ -1490,28 +1396,22 @@ document.addEventListener('DOMContentLoaded', () => {
         const arrow = document.createElement('div');
         arrow.className = `arrow arrow-${direction}`;
         
-        // Store the gesture type for hit detection
         const gestureType = direction === 'up' ? 'fist' : 'down';
         arrow.dataset.gesture = gestureType;
         
-        // Calculate the fall duration based on difficulty
         const settings = gameState.difficultySettings[gameState.difficulty];
         const fallDuration = settings.fallingSpeed / gameState.speedMultiplier;
         
-        // Set the animation duration directly using CSS
         arrow.style.animationDuration = `${fallDuration}s`;
         
         arrowsContainer.appendChild(arrow);
         
-        // Increment total notes
         if (gameState.player1) {
             gameState.player1.totalNotes++;
         }
         
-        // Remove arrow when animation ends if not already removed by hit
         arrow.addEventListener('animationend', () => {
             if (arrow.parentElement) {
-                // If it reaches the end without being hit, count as miss
                 handleMiss('player1');
                 arrow.remove();
             }
@@ -1521,52 +1421,40 @@ document.addEventListener('DOMContentLoaded', () => {
         return arrow;
     }
 
-    // --- Update Lane Gesture Icons ---
     function initializeGestureIcons() {
-        // Clear any text content
         for (let i = 0; i < 4; i++) {
             const iconElement = document.getElementById(`lane-gesture-${i}`);
             if (iconElement) {
-                // Just ensure the element is empty (the ::before pseudo-element will show the SVG)
                 iconElement.textContent = '';
             }
         }
         
-        // The icons are now displayed via CSS ::before pseudo-element
         logDebugMessage('Lane gesture icons initialized with SVG graphics');
     }
 
-    // --- Update Right Panel Gesture ---
     function setRightPanelGesture(gesture) {
         const iconElement = document.getElementById('gesture-icon-large');
         const nameElement = document.getElementById('gesture-name-large');
         
         if (iconElement) {
-            // Remove all gesture classes
             iconElement.classList.remove('peace', 'index', 'fist', 'open_hand', 'down', 'none');
             
-            // Add the appropriate class for SVG display
             iconElement.classList.add(gesture);
         }
         
         if (nameElement) {
-            // Remove all gesture classes from the name element
             nameElement.classList.remove('peace', 'index', 'fist', 'open_hand', 'down', 'none');
             
-            // Add the appropriate class for background color
             nameElement.classList.add(gesture);
             
-            // Format gesture name for display (capitalize, replace underscores)
             const displayName = gesture === 'none' ? 'None' : 
                 gesture.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase());
             nameElement.textContent = displayName;
         }
         
-        // Update hit zones
         updateHitZones(gesture);
     }
 
-    // Update hit zone colors based on current gesture
     function updateHitZones(gesture) {
         const lanes = document.querySelectorAll('.lane');
         if (!lanes) return;
@@ -1577,7 +1465,6 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const laneGesture = GESTURE_LANE_MAP[laneIdx];
             
-            // Highlight hit zone if gesture matches lane
             if (gesture === laneGesture) {
                 hitZone.classList.add('active');
             } else {
@@ -1586,12 +1473,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Update Header Progress Bar ---
     function setHeaderProgress(percent) {
         const fill = document.getElementById('header-progress-fill');
         if (fill) fill.style.width = `${percent}%`;
     }
 
-    // Add a variable to track current gesture
     let currentGesture = 'none';
 });
