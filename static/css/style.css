@@ -1,4 +1,3 @@
-/* Reset and base styles */
 * {
   margin: 0;
   padding: 0;
@@ -13,14 +12,13 @@ body, html {
   margin: 0;
   padding: 0;
   height: 100%;
-  overflow: hidden; /* Prevent body scrolling */
+  overflow: hidden; 
 }
 
 .hidden {
   display: none !important;
 }
 
-/* Dynamic Background */
 #dynamic-background {
   position: fixed;
   top: 0;
@@ -37,7 +35,6 @@ body, html {
   50% { filter: brightness(1.5); }
 }
 
-/* Splash Screen */
 #splash-screen {
   height: 100vh;
   width: 100%;
@@ -108,50 +105,50 @@ body, html {
   box-shadow: 0 2px 10px rgba(255, 107, 107, 0.4);
 }
 
-/* Tutorial Screen */
+
 #tutorial-screen {
   width: 100%;
-  height: 100vh; /* Full viewport height */
+  height: 100vh; 
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Center content vertically */
+  justify-content: center; 
   align-items: center;
-  padding: 10px 20px; /* Keep padding */
+  padding: 10px 20px; 
   z-index: 2;
   background: rgba(0, 0, 0, 0.85);
-  position: fixed; /* Ensure it covers the entire screen */
+  position: fixed; 
   top: 0;
   left: 0;
-  overflow-y: auto; /* Allow scrolling if needed, but aim to avoid it */
+  overflow-y: auto; 
 }
 
 #tutorial-screen h2 {
-  font-size: 2rem; /* Adjusted heading size */
+  font-size: 2rem; 
   color: #ffd700;
   text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-  margin-bottom: 10px; /* Keep margin */
+  margin-bottom: 10px; 
   text-align: center;
 }
 
 .tutorial-content {
   width: 95%;
-  max-width: 900px; /* Keep max-width */
+  max-width: 900px; 
   background: rgba(13, 42, 64, 0.8);
   border-radius: 15px;
-  padding: 15px; /* Keep padding */
+  padding: 15px; 
   border: 2px solid #4b6cb7;
   box-shadow: 0 0 20px rgba(75, 108, 183, 0.3);
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: auto; /* Allow content to dictate height */
-  max-height: 85vh; /* Keep max-height */
+  height: auto; 
+  max-height: 85vh; 
   margin-bottom: 10px;
-  overflow-y: auto; /* Allow scrolling within content if necessary */
+  overflow-y: auto; 
 }
 
 .tutorial-section {
-  margin-bottom: 15px; /* Keep margin */
+  margin-bottom: 15px; 
   width: 100%;
 }
 
@@ -160,29 +157,29 @@ body, html {
 }
 
 .tutorial-section h3 {
-  font-size: 1rem; /* Reduced font size */
+  font-size: 1rem; 
   color: #48dbfb;
-  margin-bottom: 5px; /* Keep margin */
+  margin-bottom: 5px; 
   text-align: center;
   text-shadow: 0 0 8px rgba(72, 219, 251, 0.5);
 }
 
 .tutorial-section p {
   color: #e0e6ed;
-  font-size: 0.85rem; /* Reduced font size */
+  font-size: 0.85rem; 
   line-height: 1.3;
   text-align: center;
-  margin-bottom: 8px; /* Keep margin */
+  margin-bottom: 8px; 
 }
 
 .gesture-guide {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap; /* Allow wrapping */
-  gap: 8px; /* Further reduced gap */
-  margin: 10px 0; /* Keep margin */
-  padding: 5px; /* Keep padding */
+  flex-wrap: wrap; 
+  gap: 8px; 
+  margin: 10px 0; 
+  padding: 5px; 
   background: none;
   border: none;
   box-shadow: none;
@@ -191,8 +188,8 @@ body, html {
 .gesture-item {
   background: rgba(0, 0, 0, 0.4);
   border-radius: 10px;
-  padding: 6px; /* Further reduced padding */
-  width: 120px; /* Further reduced width */
+  padding: 6px; 
+  width: 120px; 
   flex-direction: column;
   align-items: center;
   transition: all 0.3s ease;
@@ -204,15 +201,15 @@ body, html {
 }
 
 .gesture-item:hover {
-  transform: translateY(-3px); /* Adjusted hover effect */
-  box-shadow: 0 5px 15px rgba(29, 209, 161, 0.4); /* Adjusted shadow */
+  transform: translateY(-3px); 
+  box-shadow: 0 5px 15px rgba(29, 209, 161, 0.4); 
   border-color: rgba(29, 209, 161, 0.8);
 }
 
 .gesture-icon-large {
-  width: 40px; /* Reduced size */
-  height: 40px; /* Reduced size */
-  margin-bottom: 3px; /* Reduced margin */
+  width: 40px; 
+  height: 40px; 
+  margin-bottom: 3px; 
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -228,10 +225,10 @@ body, html {
 }
 
 .gesture-name {
-  font-size: 0.8rem; /* Reduced font size */
+  font-size: 0.8rem; 
   font-weight: bold;
   color: white;
-  margin: 1px 0; /* Further reduced margin */
+  margin: 1px 0; 
   text-align: center;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   text-transform: uppercase;
@@ -239,35 +236,34 @@ body, html {
 
 .gesture-desc {
   color: #a6c1ee;
-  font-size: 0.65rem; /* Slightly smaller description font */
+  font-size: 0.65rem; 
   text-align: center;
-  line-height: 1.2; /* Further reduced line height */
-  padding: 0 3px; /* Reduced padding */
+  line-height: 1.2; 
+  padding: 0 3px; 
   opacity: 0.9;
 }
 
-/* Add colored backgrounds to gesture icons */
 .gesture-item[data-gesture="fist"] .gesture-icon-large {
-  background-color: #1dd1a1; /* Green */
+  background-color: #1dd1a1; 
   border: 2px solid #3be8b0;
 }
 
 .gesture-item[data-gesture="peace"] .gesture-icon-large {
-  background-color: #ff6b6b; /* Red */
+  background-color: #ff6b6b; 
   border: 2px solid #ff8e8e;
 }
 
 .gesture-item[data-gesture="index"] .gesture-icon-large {
-  background-color: #feca57; /* Yellow */
+  background-color: #feca57; 
   border: 2px solid #ffde80;
 }
 
 .gesture-item[data-gesture="open_hand"] .gesture-icon-large {
-  background-color: #48dbfb; /* Blue */
+  background-color: #48dbfb; 
   border: 2px solid #70eaff;
 }
 
-/* Ensure the SVG icons are visible on the colored background */
+
 .gesture-icon-large svg {
   fill: white;
   stroke: white;
@@ -275,7 +271,7 @@ body, html {
   height: 60%;
 }
 
-/* Gesture-specific styles */
+
 .gesture-item[data-gesture="fist"] {
   border-color: #1dd1a1;
 }
@@ -292,31 +288,29 @@ body, html {
   border-color: #48dbfb;
 }
 
-/* Scoring Section */
 .tutorial-section.scoring-section p {
-  font-size: 0.85rem; /* Further smaller font to save space */
-  line-height: 1.3; /* Reduced line height */
-  margin: 3px 0; /* Further reduced margin */
+  font-size: 0.85rem; 
+  line-height: 1.3; 
+  margin: 3px 0; 
 }
 
-/* Back to Menu Button */
 .back-btn {
-  width: 180px; /* Reduced button width */
-  padding: 8px 0; /* Reduced padding */
+  width: 180px; 
+  padding: 8px 0; 
   border: none;
   border-radius: 50px;
   background: linear-gradient(90deg, #ff6b6b, #feca57);
   color: white;
-  font-size: 0.9rem; /* Reduced font size */
+  font-size: 0.9rem; 
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
   box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
-  margin-top: 10px; /* Further reduced margin */
+  margin-top: 10px; 
 }
 
 .back-btn:hover {
-  transform: translateY(-4px); /* Adjusted hover effect */
-  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6); /* Adjusted shadow */
+  transform: translateY(-4px); 
+  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6); 
 }
 
 .back-btn:active {
@@ -324,7 +318,6 @@ body, html {
   box-shadow: 0 2px 10px rgba(255, 107, 107, 0.4);
 }
 
-/* Debug Toggle Button */
 .debug-toggle-btn {
   position: fixed;
   bottom: 10px;
@@ -346,60 +339,59 @@ body, html {
   box-shadow: 0 0 8px rgba(0, 255, 0, 0.5);
 }
 
-/* Responsive Adjustments */
 @media (max-width: 768px) {
   #tutorial-screen h2 {
-    font-size: 1.8rem; /* Smaller heading on mobile */
+    font-size: 1.8rem; 
   }
 
   .tutorial-content {
     width: 95%;
-    padding: 8px; /* Reduced padding */
+    padding: 8px; 
   }
 
   .tutorial-section {
-    margin-bottom: 10px; /* Reduced margin */
+    margin-bottom: 10px; 
   }
 
   .tutorial-section h3 {
-    font-size: 1rem; /* Smaller heading */
+    font-size: 1rem; 
   }
 
   .tutorial-section p {
-    font-size: 0.8rem; /* Smaller font */
+    font-size: 0.8rem; 
     margin-bottom: 5px;
   }
 
   .gesture-guide {
-    gap: 8px; /* Reduced gap */
+    gap: 8px; 
   }
 
   .gesture-item {
-    width: 120px; /* Smaller boxes on mobile */
-    padding: 6px; /* Reduced padding */
+    width: 120px; 
+    padding: 6px; 
   }
 
   .gesture-icon-large {
-    width: 35px; /* Smaller icon */
+    width: 35px; 
     height: 35px;
     margin-bottom: 3px;
   }
 
   .gesture-name {
-    font-size: 0.7rem; /* Smaller font */
+    font-size: 0.7rem; 
   }
 
   .gesture-desc {
-    font-size: 0.55rem; /* Smaller description font */
+    font-size: 0.55rem; 
   }
 
   .tutorial-section.scoring-section p {
-    font-size: 0.75rem; /* Smaller font */
+    font-size: 0.75rem; 
     margin: 2px 0;
   }
 
   .back-btn {
-    width: 160px; /* Smaller button */
+    width: 160px; 
     padding: 6px 0;
     font-size: 0.8rem;
     margin-top: 8px;
@@ -408,7 +400,7 @@ body, html {
 
 @media (max-width: 480px) {
   #tutorial-screen h2 {
-    font-size: 1.5rem; /* Even smaller heading */
+    font-size: 1.5rem; 
   }
 
   .tutorial-content {
@@ -435,7 +427,7 @@ body, html {
   }
 
   .gesture-item {
-    width: 100px; /* Even smaller for very small screens */
+    width: 100px; 
     padding: 5px;
   }
 
@@ -466,7 +458,6 @@ body, html {
   }
 }
 
-/* Leaderboard Screen */
 #leaderboard-screen {
   height: 100vh;
   width: 100%;
@@ -494,7 +485,6 @@ body, html {
   margin-bottom: 30px;
 }
 
-/* Song Select Screen */
 #song-select-screen {
   height: 100vh;
   width: 100%;
@@ -630,7 +620,6 @@ body, html {
   padding: 20px;
 }
 
-/* Game Screen */
 #game-screen {
   width: 100vw;
   height: 100vh;
@@ -646,7 +635,6 @@ body, html {
   left: 0;
 }
 
-/* --- Header Bar --- */
 .game-header-bar {
   display: flex;
   justify-content: space-between;
@@ -684,7 +672,6 @@ body, html {
   100% { background-position: 100% 50%; }
 }
 
-/* --- Game Area Layout --- */
 .game-area {
   display: flex;
   height: calc(100vh - 100px);
@@ -710,7 +697,6 @@ body, html {
   border-right: none;
 }
 
-/* Arrow styling - Make tiles bigger */
 .arrow {
   position: absolute;
   width: 80px;
@@ -738,7 +724,6 @@ body, html {
   color: white;
 }
 
-/* Custom arrow icons with SVG instead of emoji */
 .arrow-up::before {
   content: "";
   display: block;
@@ -761,7 +746,6 @@ body, html {
   transform: scale(1.5);
 }
 
-/* Add falling animation */
 @keyframes fall {
   from {
     top: -80px;
@@ -771,7 +755,6 @@ body, html {
   }
 }
 
-/* Hit zone indicator - make it more prominent */
 .hit-zone {
   position: absolute;
   bottom: 0;
@@ -783,7 +766,6 @@ body, html {
   z-index: 1;
 }
 
-/* Lane gesture icons - styled to match the reference image */
 .lane-gesture-icon {
   position: absolute;
   bottom: 10px;
@@ -802,7 +784,6 @@ body, html {
   z-index: 20;
 }
 
-/* Custom gesture icons instead of emoji */
 .lane-gesture-icon::before {
   content: "";
   display: block;
@@ -829,7 +810,6 @@ body, html {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 100 100'%3E%3Cpath d='M30,50 L30,70 C30,75 35,75 35,70 L35,45 C35,40 30,40 30,45 L30,50 Z M45,40 L45,70 C45,75 50,75 50,70 L50,35 C50,30 45,30 45,35 L45,40 Z M60,40 L60,70 C60,75 65,75 65,70 L65,35 C65,30 60,30 60,35 L60,40 Z M75,50 L75,70 C75,75 80,75 80,70 L80,45 C80,40 75,40 75,45 L75,50 Z' fill='white' stroke='white' stroke-width='3'/%3E%3C/svg%3E");
 }
 
-/* Right panel improvements */
 .right-panel {
   flex: 1;
   display: flex;
@@ -840,7 +820,6 @@ body, html {
   justify-content: space-between;
 }
 
-/* Adjust webcam frame to be taller */
 .webcam-frame {
   width: 100%;
   height: 320px;
@@ -857,7 +836,6 @@ body, html {
   object-fit: cover;
 }
 
-/* Move gesture display down and improve styling */
 .gesture-display {
   display: flex;
   flex-direction: column;
@@ -870,7 +848,6 @@ body, html {
   border: 1px solid rgba(30, 144, 255, 0.5);
 }
 
-/* Style for gesture icon - use SVG instead of emoji */
 .gesture-icon-large {
   width: 70px;
   height: 70px;
@@ -907,7 +884,6 @@ body, html {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='30' fill='none' stroke='white' stroke-width='3'/%3E%3Ctext x='50' y='65' text-anchor='middle' font-size='40' fill='white'%3E?%3C/text%3E%3C/svg%3E");
 }
 
-/* Ensure game buttons are at the bottom with proper spacing */
 .game-buttons {
   display: flex;
   flex-direction: column;
@@ -941,7 +917,6 @@ body, html {
   color: white;
 }
 
-/* Make the hit feedback more visible */
 .feedback-text {
   position: absolute;
   left: 50%;
@@ -975,17 +950,14 @@ body, html {
   font-size: 20px;
 }
 
-/* --- Misc --- */
 #game-screen .hidden { display: none !important; }
 
-/* Responsive adjustments */
 @media (max-width: 1100px) {
   .game-area { flex-direction: column; align-items: center; }
   .lanes { margin-right: 0; margin-bottom: 2rem; }
   .right-panel { width: 90vw; max-width: 340px; }
 }
 
-/* Results Screen */
 #results-screen {
   height: 100vh;
   width: 100%;
@@ -1059,7 +1031,6 @@ body, html {
   gap: 20px;
 }
 
-/* Debug Console */
 .debug-console {
   position: fixed;
   bottom: 0;
@@ -1135,7 +1106,6 @@ body, html {
   color: #ff6b6b;
 }
 
-/* Loading indicator */
 .loading-overlay {
   position: fixed;
   top: 0;
@@ -1171,7 +1141,6 @@ body, html {
   100% { transform: rotate(360deg); }
 }
 
-/* Countdown overlay styles */
 .countdown-overlay {
   position: fixed;
   top: 0;
@@ -1198,7 +1167,6 @@ body, html {
   color: #1dd1a1;
 }
 
-/* Game lane styles for arrows */
 .game-lane {
   width: 100%;
   max-width: 340px;
@@ -1212,7 +1180,6 @@ body, html {
   box-shadow: 0 0 15px rgba(29, 209, 161, 0.3);
 }
 
-/* Tile styling */
 .tile {
   position: absolute;
   width: 60px;
@@ -1231,12 +1198,11 @@ body, html {
   opacity: 1;
 }
 
-/* Hit box styling [NEW] */
 .hit-box {
   position: absolute;
   width: 60px;
   height: 60px;
-  bottom: 80px; /* Matches hitZoneTop in checkHit */
+  bottom: 80px; 
   border: 2px solid rgba(255, 255, 255, 0.3);
   border-radius: 12px;
   display: flex;
@@ -1284,7 +1250,6 @@ body, html {
   background-image: url('/static/images/open_hand.png');
 }
 
-/* Feedback text styling [MODIFIED] */
 .feedback-text {
   position: absolute;
   left: 50%;
@@ -1334,7 +1299,6 @@ body, html {
   transform: translateY(-20px);
 }
 
-/* Tile animations */
 @keyframes fallDown {
   from { top: -60px; }
   to { top: 480px; }
@@ -1345,14 +1309,12 @@ body, html {
   50% { transform: scale(1.05); }
 }
 
-/* Expired tile effect */
 .tile.expired {
   opacity: 0.3;
   transform: scale(0.8);
   transition: opacity 0.2s, transform 0.2s;
 }
 
-/* Hit feedback */
 .hit-feedback {
   position: absolute;
   left: 50%;
@@ -1394,7 +1356,6 @@ body, html {
   100% { opacity: 0; transform: translateX(-50%) translateY(-40px); }
 }
 
-/* Tile colors */
 .tile.peace {
   background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
   border: 2px solid #ffffff;
@@ -1425,7 +1386,6 @@ body, html {
   50% { opacity: 0.8; }
 }
 
-/* Game options */
 .game-options {
   width: 100%;
   background: rgba(0, 0, 0, 0.3);
@@ -1509,7 +1469,6 @@ body, html {
   border: none;
 }
 
-/* Time display in game */
 .time-display {
   display: flex;
   align-items: center;
@@ -1533,7 +1492,6 @@ body, html {
   transition: width 1s linear;
 }
 
-/* Help button */
 .help-btn {
   background: rgba(0, 0, 0, 0.5);
   color: white;
@@ -1549,7 +1507,6 @@ body, html {
   background: rgba(75, 108, 183, 0.5);
 }
 
-/* Gesture Guide Overlay */
 .gesture-guide-overlay {
   position: fixed;
   top: 0;
@@ -1647,7 +1604,6 @@ body, html {
   100% { transform: scale(1); }
 }
 
-/* Song Settings Panel */
 .song-settings-panel {
   background: rgba(0, 0, 0, 0.4);
   border-radius: 10px;
@@ -1665,7 +1621,6 @@ body, html {
   background: linear-gradient(90deg, #182848, #4b6cb7);
 }
 
-/* Volume Controls in Song Select */
 #song-select-screen .volume-slider {
   background: rgba(255, 255, 255, 0.2);
   height: 6px;
@@ -1684,7 +1639,6 @@ body, html {
   height: 16px;
 }
 
-/* Difficulty info styling */
 .difficulty-info {
   background: rgba(0, 0, 0, 0.2);
   border-radius: 10px;
@@ -1733,19 +1687,16 @@ body, html {
   color: #48dbfb;
 }
 
-/* Hit zone active state when gesture matches */
 .hit-zone.active {
   background-color: rgba(30, 144, 255, 0.4);
   border-top: 2px solid rgba(30, 144, 255, 1);
   box-shadow: 0 0 15px rgba(30, 144, 255, 0.6);
 }
 
-/* Fix emoji for open_hand */
 .open_hand::before {
   content: '🖐️';
 }
 
-/* Add a background to the combo counter */
 #combo {
   display: inline-block;
   min-width: 30px;
@@ -1757,7 +1708,6 @@ body, html {
   text-shadow: 0 0 5px rgba(255, 211, 42, 0.7);
 }
 
-/* Restore gesture text display styling */
 .gesture-name {
   font-size: 32px;
   font-weight: bold;
@@ -1772,7 +1722,6 @@ body, html {
   transition: background-color 0.3s ease;
 }
 
-/* Color-coded backgrounds for gesture names */
 .gesture-name.peace {
   background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
   border: 2px solid #ffffff;
@@ -1819,7 +1768,6 @@ body, html {
   letter-spacing: 1px;
 }
 
-/* Color-code gesture icons in lanes */
 .lane[data-lane="0"] .lane-gesture-icon {
   border-color: #1dd1a1;
   box-shadow: 0 0 10px rgba(29, 209, 161, 0.5);
@@ -1844,7 +1792,6 @@ body, html {
   background-color: rgba(72, 219, 251, 0.2);
 }
 
-/* Add combo flash effect */
 .combo-flash {
   position: absolute;
   top: 0;
@@ -1863,7 +1810,6 @@ body, html {
   100% { opacity: 0; }
 }
 
-/* Adjust falling animation for different difficulties */
 @keyframes fall {
   from {
     top: -80px;
@@ -1873,7 +1819,6 @@ body, html {
   }
 }
 
-/* Perfect hit effect */
 .feedback-text.perfect {
   color: #ffdd59;
   text-shadow: 0 0 10px #feca57, 0 0 20px #ff9f1a;
@@ -1887,7 +1832,6 @@ body, html {
   100% { transform: translateX(-50%) scale(1); }
 }
 
-/* Progress indicator in header */
 #header-progress-fill {
   height: 100%;
   width: 0%;
@@ -1904,7 +1848,6 @@ body, html {
   100% { background-position: 100% 50%; }
 }
 
-/* Add styles for the gesture guide in How to Play */
 .gesture-guide {
   display: flex;
   justify-content: center;
@@ -1987,7 +1930,6 @@ body, html {
   opacity: 0.9;
 }
 
-/* Lane indicator for each gesture */
 .gesture-item::after {
   content: attr(data-lane);
   position: absolute;
@@ -2001,7 +1943,6 @@ body, html {
   font-weight: bold;
 }
 
-/* Color-coded borders for each gesture type */
 .gesture-item[data-gesture="peace"] {
   border-color: rgba(255, 107, 107, 0.7);
 }
@@ -2018,7 +1959,6 @@ body, html {
   border-color: rgba(72, 219, 251, 0.7);
 }
 
-/* Hover effects for each gesture type */
 .gesture-item[data-gesture="peace"]:hover {
   box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
 }
