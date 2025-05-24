@@ -8,7 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Debug Console - Initially hidden -->
     <div id="debug-console" class="debug-console hidden">
         <div class="debug-header">
             <h3>Debug Console</h3>
@@ -18,10 +17,8 @@
         <div id="debug-log" class="debug-log"></div>
     </div>
     
-    <!-- Debug Toggle Button - Always visible -->
     <button id="debug-toggle-btn" class="debug-toggle-btn">Debug</button>
     
-    <!-- Loading Overlay -->
     <div id="loading-overlay" class="loading-overlay hidden">
         <div class="loading-spinner"></div>
         <div id="loading-text" class="loading-text">Loading...</div>
@@ -33,15 +30,12 @@
         </div>
     </div>
     
-    <!-- Countdown Overlay -->
     <div id="countdown-overlay" class="countdown-overlay hidden">
         <div id="countdown-number" class="countdown-number">3</div>
     </div>
 
-    <!-- Dynamic Background -->
     <div id="dynamic-background"></div>
 
-    <!-- Splash Screen -->
     <div id="splash-screen">
         <div class="logo-container">
             <h1 class="game-title">GestureBeats</h1>
@@ -54,7 +48,6 @@
         </div>
     </div>
 
-    <!-- Replace the tutorial-screen div content -->
     <div id="tutorial-screen" class="hidden">
         <h2>How to Play</h2>
         <div class="tutorial-content">
@@ -100,7 +93,6 @@
         <button id="back-to-menu" class="menu-btn back-btn">Back to Menu</button>
     </div>
 
-    <!-- Leaderboard Screen -->
     <div id="leaderboard-screen" class="hidden">
         <h2>Leaderboard</h2>
         <div id="leaderboard-list">
@@ -109,7 +101,6 @@
         <button id="back-from-leaderboard" class="menu-btn back-btn">Back to Menu</button>
     </div>
 
-    <!-- Song Select Screen -->
     <div id="song-select-screen" class="hidden">
         <h2>Select a Song</h2>
         <div class="song-search-container">
@@ -175,7 +166,6 @@
         <button id="back-from-songs" class="menu-btn back-btn">Back to Menu</button>
     </div>
 
-    <!-- Game Screen -->
     <div id="game-screen" class="hidden">
         <div class="game-header-bar">
             <div class="header-score">Score: <span id="score">0</span></div>
@@ -226,7 +216,6 @@
         </div>
     </div>
 
-    <!-- Results Screen -->
     <div id="results-screen" class="hidden">
         <h2>Game Results</h2>
         <div class="results-container">
@@ -247,13 +236,11 @@
         </div>
     </div>
 
-    <!-- Audio Elements -->
     <audio id="song-audio" preload="auto"></audio>
     <audio id="hit-sound" src="static/sounds/hit.mp3" preload="auto"></audio>
     <audio id="miss-sound" src="static/sounds/miss.mp3" preload="auto"></audio>
     <audio id="combo-sound" src="static/sounds/combo.mp3" preload="auto"></audio>
     
-    <!-- Scripts -->
     <script src="https://cdn.socket.io/4.7.4/socket.io.min.js"></script>
     <script src="static/js/game.js"></script>
 </body>
